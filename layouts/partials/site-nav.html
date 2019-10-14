@@ -1,0 +1,47 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="container is-small">
+
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbar" class="navbar-menu">
+        <div class="navbar-start">
+          {{ $Subpath := .Site.Params.Site.Subpath }}
+          {{ if .Site.Menus.main }}
+            {{ $LangPrefix := .Site.LanguagePrefix }} 
+            {{ range .Site.Menus.main }}
+                {{ if .HasChildren }}
+                    <div class="navbar-item has-dropdown is-hoverable">
+
+                      <a class="navbar-link">
+                        {{ .Name }}
+                      </a>
+                      <div class="navbar-dropdown">
+                        {{ range .Children }}
+                          {{ partial "fix_broken_url.html" (dict "URL" .URL "Name" .Name "LangPrefix" $LangPrefix "Subpath" $Subpath)  }}
+                        {{ end }}
+                      </div>
+                    </div>
+                {{ else }}
+                    {{ partial "fix_broken_url.html" (dict "URL" .URL "Name" .Name "LangPrefix" $LangPrefix "Subpath" $Subpath)  }}
+                {{ end }}
+            {{ end }}
+          {{ end }}
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                {{ i18n "login" }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</nav>

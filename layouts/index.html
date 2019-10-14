@@ -1,0 +1,75 @@
+{{ define "main" }}
+  {{ $flist := (where (where .Site.RegularPages  "Section" "projects" ) ".Params.featured" "==" true ) }}
+  {{ if (gt (len $flist) 0) }}
+  <div id="carousel" class="carousel">
+
+    {{ range  $index, $element := $flist }}
+      <div class="item-{{ add $index 1 }}">
+        <div class="featured-container">
+          <img src="{{ .Site.Params.Site.Subpath }}/{{ $element.Params.cover_image}}">
+          <a class="featured-caption is-pulled-left" href="{{ $element.Permalink | relURL }}" title="{{ $element.Title }}"><span class='spacer'></span>{{ $element.Title }}<span class='spacer'></span></a>
+        </div>
+      </div>
+    {{ end }}  
+  </div>
+  {{ end }}  
+
+
+  <section class="section">
+    <div class="container is-small">
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <h3 class="is-size-3 has-text-centered">{{ .Site.Title }}</h3>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <img src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg">
+          {{ with .Site.GetPage "/about/history" }}
+          <p>{{ .Summary }}</p>
+          {{ end }}
+        </div>
+        <div class="column is-one-third">
+          <h3 class="is-size-3 has-text-centered"></h3>
+          <div class="contacts">
+            <p class="has-text-weight-bold">{{ i18n "meetingInfo" }}<p>
+            <p><span class="has-text-weight-bold">{{ i18n "where" }}</span> {{ .Site.Params.Club.Location }}</p>
+            <p>{{ .Site.Params.Club.AddressLine1 }}</p>
+            <p>{{ .Site.Params.Club.AddressLine2 }}, {{ .Site.Params.Club.Country }}</p>
+            <p><span class="has-text-weight-bold">{{ i18n "when" }}</span> {{ .Site.Params.Club.MeetingTime }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{ with .Site.GetPage "/news" }}
+  <section class="section">
+    <div class="container is-small">
+      <h3 class="is-size-3">{{ i18n "news" }}</h3>
+      <div class="columns is-multiline">
+      {{ range .Pages }}
+
+        <div class="column is-one-third">
+          {{ partial "card.html" . }}
+        </div>
+
+
+      {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+
+
+    <script src="{{ .Site.BaseURL }}/dist/js/bulma-carousel.min.js"></script>
+    <script>
+    bulmaCarousel.attach('#carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      autoplay: true
+    });
+    </script>
+{{ end }}

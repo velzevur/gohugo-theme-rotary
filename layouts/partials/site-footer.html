@@ -1,0 +1,36 @@
+<footer class="footer">
+    <section class="section">
+        <div class="container is-small">
+            <div class="columns">
+                <div class="column is-one-third">
+                тук ще стоят иконки с линнкове за Fecebook, Instagram, Youtube и каквото още намерим за добре
+                </div>
+                <div class="column is-one-third">
+                <p class="is-uppercase">{{ i18n "other-sites" }}</p>
+                <p><a href="{{ .Site.Params.Club.District_url }}" class="has-text-weight-bold has-text-primary">{{ i18n "rotary" }} {{ .Site.Params.Club.Country }}</a></p>
+                <p><a href="https://rotary.org" class="has-text-weight-bold has-text-primary">Rotary international</a></p>
+                </div>
+                <div class="column is-one-third">
+                {{ if .Site.IsMultiLingual }}
+                <p class="is-uppercase">Other languages</p>
+                {{ $Subpath := .Site.Params.Site.Subpath }}
+                {{ range .Site.Languages }}
+                    {{ if eq . $.Site.Language }}
+                    <p><a class="has-text-primary">{{ .LanguageName }}</a></p>
+                    {{ else }}
+                    <p><a href="{{ $Subpath }}/{{ .Lang }}" class="has-text-weight-bold has-text-primary">{{ .LanguageName }}</a></p>
+                    {{ end }}
+                {{ end }}
+                {{ end }}
+                </div>
+            </div>
+        </div>
+    </section>
+  <div class="content has-text-centered">
+
+    <p>
+      &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+    </p>
+  <div>{{ partial "social-follow.html" . }}</div>
+  </div>
+ </footer>

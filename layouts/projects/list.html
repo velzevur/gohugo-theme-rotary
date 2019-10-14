@@ -1,0 +1,33 @@
+{{ define "main" }}
+  <section class="section">
+    <div class="container is-small">
+      {{ range .Pages }}
+
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img src="{{ .Site.Params.Site.Subpath }}/{{ .Page.Params.cover_image}}" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+
+                <div class="media-content">
+                  <p class="title is-4 has-blue-text"><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></p>
+                  <p class="has-text-grey is-size-7">{{ delimit .Page.Params.Areas ", " }}</p>
+                </div>
+              </div>
+
+              <div class="content">
+                <p>{{ .Summary }} (<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+{{ end }}

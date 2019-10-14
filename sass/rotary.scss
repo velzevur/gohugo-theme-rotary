@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+// Set Rotary colors
+$sky-blue: #019FCB;
+$royal-blue: #0C3C7C;
+$steel-blue: #263B4C;
+$azure-blue: #0050A2;
+
+$cranberry: #C10042;
+$turquoise: #018D8D;
+$violet: #872175;
+$gray-lighter: #F8F9FA;
+$gray-darker: #5E717D;
+
+
+$theme: "white";
+$theme: "blue";
+
+// Update Bulma's global variables
+$grey-dark: $gray-darker;
+$grey-light: $gray-lighter;
+$primary: $royal-blue;
+$link: $primary;
+$link-hover: $primary;
+
+
+@import "./bulma-0.7.5/bulma.sass";
+@import "./bulma-carousel-master/src/sass/index.sass";
+
+
+.club-name {
+    font-weight: bold;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+@if $theme == "blue" {
+    .club-name {
+        color: white;
+    }
+    .logo {
+        display: inline-block;
+        background: url("/rotary_blue/images/white-logo.png") no-repeat; width: 213px; height: 80px; background-size: cover;  
+    }
+    .header {
+        background-color: $royal-blue;
+    }
+}
+@else if $theme == "white"{
+    .club-name {
+        color: $royal-blue;
+    }
+
+    .logo {
+        display: inline-block;
+        background: url("/rotary_blue/images/logo.png") no-repeat; width: 206px; height: 77px; background-size: cover;
+    }
+
+}
+.footer{
+    padding-top: 0px;
+    background-color: $gray-lighter;
+}
+.featured-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 100%; /* for IE 6 */
+}
+
+.featured-caption {
+    color: white; 
+    text-align: left;
+    letter-spacing: -1px;
+    background: $royal-blue; /* The Fallback */
+    background: rgba($royal-blue, 1);
+    padding: 10px; 
+    position: absolute;
+    bottom: 6px;
+    left: 16px;
+}
+.featured-caption:hover {
+    color: white; 
+}
+span.spacer {
+    padding:0 5px;
+}
+
+.contacts {
+    background-color: $gray-lighter;
+    padding: 10px; 
+}
+
+.has-blue-text {
+    color: $royal-blue;
+}

@@ -1,0 +1,59 @@
+[more]
+other = "More"
+
+[allTitle]
+other = "All {{.Title }}"
+
+[recentTitle]
+other = "Recent {{.Title }}"
+
+[readMore]
+other = "read more"
+
+[whatsInThis]
+other = "What's in this {{ .Type }}"
+
+[related]
+other = "Related"
+
+[login]
+other = "Log in"
+
+[yourName]
+other = "Your Name"
+
+[emailAddress]
+other = "Email Address"
+
+[message]
+other = "Message"
+
+[emailRequiredNote]
+other = "An email address is required."
+
+[send]
+other = "Send"
+
+[other-sites]
+other = "Other sites"
+
+[rotary]
+other = "Rotary"
+
+[meetingInfo]
+other = "Meeting info"
+
+[where]
+other = "Address"
+
+[when]
+other = "When"
+
+[club]
+other = "Club"
+
+[news]
+other = "News"
+
+[project]
+other = "Project"

@@ -1,0 +1,12 @@
+name = "Rotary Gohugo Theme"
+license = "MIT"
+licenselink = "https://github.com/velzevur/gohugo-theme-rotary/blob/master/LICENSE.md"
+description = "A theme for Rotary clubs websites"
+homepage = "https://github.com/velzevur/rotary_theme"
+tags = ["website", "starter", "responsive", "blog", "Tachyons", "Multilingual"]
+features = ["news", "shortcodes", "related content"]
+min_version = "0.30.2"
+
+[author]
+  name = "Dimitar Ivanov"
+  homepage = "https://github.com/velzevur"

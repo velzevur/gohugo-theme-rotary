@@ -1,0 +1,43 @@
+{{ define "main" }}
+ <section class="section">
+    <div class="container is-small">
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <h3 class="is-size-3 has-text-centered">{{ .Title }}</h3>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <img src="{{ .Params.Image}}">
+          <div class="content">
+            <p>{{ .Content }}</p>
+          </div>
+        </div>
+          <div>
+            <div class="contacts">
+              <p class="has-text-weight-bold">Тук ще има информация за самия
+              проект: от кога го правим, по кое от направленията на Ротари е,
+              кои са ни партньори и т.н.</p>
+            </div>
+            <div class="content">
+                {{ $project := .Params.project }}
+                {{ if $project }}
+                <p class="title is-4 has-blue-text">Новини</p>
+                {{ range where (where .Site.Pages "Section" "news") ".Params.project" "==" $project}}
+                  <div class="columns">
+                    <div class="column is-one-third">
+                      <span class="is-size-7">{{ dateFormat "2006-01-02" .Params.Date }}</span>
+                    </div>
+                    <div class="column is-two-thirds">
+                      <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
+                    </div>
+                  </div>
+                {{ end }}
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

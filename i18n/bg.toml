@@ -1,0 +1,60 @@
+[more]
+other = "Още"
+
+[allTitle]
+other = "Всички {{.Title }}"
+
+[recentTitle]
+other = "Последни {{.Title }}"
+
+[readMore]
+other = "прочети още"
+
+[whatsInThis]
+other = "What's in this {{ .Type }}"
+
+[login]
+other = "Вход"
+
+[related]
+other = "Подобни"
+
+[yourName]
+other = "Вашето име"
+
+[emailAddress]
+other = "E-mail адрес"
+
+[message]
+other = "Съобщение"
+
+[emailRequiredNote]
+other = "Нужен е е-mail адрес."
+
+[send]
+other = "Изпрати"
+
+[other-sites]
+other = "Други сайтове"
+
+[rotary]
+other = "Ротари"
+
+[meetingInfo]
+other = "Срещи"
+
+[where]
+other = "Къде"
+
+[when]
+other = "Кога"
+
+[club]
+other = "Клуб"
+
+[news]
+other = "Новини"
+
+[project]
+other = "Проект"
+

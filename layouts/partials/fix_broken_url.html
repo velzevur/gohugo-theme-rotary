@@ -1,0 +1,20 @@
+{{ $Sections := split (relLangURL .URL) "/" }}
+{{ $Len := len $Sections }}
+{{ if le $Len 2}}
+    <a class="navbar-item" href="{{ .URL }}">
+      {{ .Name }}
+    </a>
+{{ else }}
+  {{ $First := index $Sections 1 }}
+  {{ $Second := index $Sections 2 }}
+  {{ $Third := index $Sections 3 }}
+  {{ if and (and (eq (strings.TrimPrefix "/" .Subpath) $First) (eq (strings.TrimPrefix "/" .LangPrefix) $Second) (eq (strings.TrimPrefix "/" .Subpath) $Third))  }}
+      <a class="navbar-item" href="{{ path.Join .Subpath .LangPrefix (after 4 $Sections) }}">
+        {{ .Name }}
+      </a>
+  {{ else }}
+      <a class="navbar-item" href="{{ .URL }}">
+        {{ .Name }}
+      </a>
+  {{ end }}
+{{ end }}
