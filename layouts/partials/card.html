@@ -1,7 +1,9 @@
-<div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <a href="{{ .Permalink | relURL }}"><img src="{{ .Params.Image}}" alt="Placeholder image"></a>
+<div class="card has-rounded">
+  <div class="card-image has-rounded-top">
+    <figure class="image is-4by3 has-rounded-top">
+      <a href="{{ .Permalink | relURL }}">
+        <img class="has-rounded-top" src="{{ print .Permalink .Params.Image }}" alt="Placeholder image">
+      </a>
     </figure>
   </div>
   <div class="card-content">

@@ -3,7 +3,7 @@ license = "MIT"
 licenselink = "https://github.com/velzevur/gohugo-theme-rotary/blob/master/LICENSE.md"
 description = "A theme for Rotary clubs websites"
 homepage = "https://github.com/velzevur/rotary_theme"
-tags = ["website", "starter", "responsive", "blog", "Tachyons", "Multilingual"]
+tags = ["website", "Rotary", "responsive", "Multilingual"]
 features = ["news", "shortcodes", "related content"]
 min_version = "0.30.2"
 

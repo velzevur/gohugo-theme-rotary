@@ -67,7 +67,36 @@
             });
           });
         }
-
       });
+      function openModal(modalid) {
+        document.getElementById(modalid).style.display = "block";
+      }
+
+      function closeModal(modalid) {
+        document.getElementById(modalid).style.display = "none";
+      }
+
+      function plusSlides(id, n) {
+        showSlides(id, slideIndex += n);
+      }
+
+      function currentSlide(id, n) {
+        showSlides(id, slideIndex = n);
+      }
+
+      function showSlides(id, n) {
+        var i;
+        var gallery = document.querySelector("#" + id);
+        var slides = gallery.querySelectorAll(".item-slide");
+        console.log(slides);
+        var captionText = gallery.querySelector(".caption");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex-1].style.display = "block";
+      }
+
     </script>
 </html>

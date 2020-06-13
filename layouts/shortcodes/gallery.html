@@ -1,0 +1,27 @@
+{{- $matchstr := (print (.Get "subdir") "/*") -}}
+{{- $id :=  (print "gallery-" (delimit (shuffle (seq 1 9)) "")) -}}
+<div class="section {{ .Get "class" }}" id="{{ $id }}">
+  {{- $modalid :=  (print "modal-" $id) -}}
+  <div class="container">
+    <div class="columns is-multiline">
+      {{- range $index, $img := .Page.Resources.Match $matchstr -}}
+      {{ $scaled := $img.Fill "100x80" }}
+      <div class="column is-one-fifth">
+        <img src="{{ $scaled.RelPermalink }}" class="has-rounded" onclick="openModal('{{ $modalid }}');currentSlide('{{ $id }}', {{ add $index 1 }})">
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <div class="modal" id="{{ $modalid }}">
+    <div class="modal-content is-vcentered">
+      {{- range .Page.Resources.Match $matchstr -}}
+      <div class="item-slide">
+        <img src="{{ .RelPermalink }}" alt="">
+      </div>
+      {{ end }}
+    </div>
+    <a class="prev" onclick="plusSlides('{{ $id }}', -1)">&#10094;</a>
+    <a class="next" onclick="plusSlides('{{ $id }}', 1)">&#10095;</a>
+    <button onclick="closeModal('{{ $modalid }}')" class="modal-close is-large" aria-label="close"></button>
+  </div>
+</div>

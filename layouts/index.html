@@ -24,7 +24,7 @@
       </div>
       <div class="columns">
         <div class="column is-two-thirds">
-          <img src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg">
+          <img class="has-rounded-top" src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg">
           {{ with .Site.GetPage "/about/history" }}
           <p>{{ .Summary }}</p>
           {{ end }}

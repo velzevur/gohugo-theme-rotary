@@ -1,0 +1,12 @@
+{{- $src := .Get "src" -}}
+{{- $ordinal := .Ordinal -}}
+{{- $class := default "is-one-fifth" (.Get "class") -}}
+{{- with .Parent -}}
+  <div class="column {{ $class }}">
+    {{ $ordinal }}
+    <img src="{{$src}}" class="has-rounded">
+  </div>
+{{- else -}}
+  <img src="{{$src}}">
+{{- end }}
+
