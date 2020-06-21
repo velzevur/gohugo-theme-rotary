@@ -57,3 +57,7 @@ other = "News"
 
 [project]
 other = "Project"
+
+[partners]
+other = "Partners"
+

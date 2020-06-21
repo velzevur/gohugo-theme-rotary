@@ -8,19 +8,32 @@
       </div>
       <div class="columns">
         <div class="column is-two-thirds">
-          <img class="has-rounded-top" src="{{ .Params.Image}}">
+          {{ $link := .Permalink }}
+          {{ with .Params.image }}
+          {{ $image := . }}
+          <img class="has-rounded-top" src="{{$link}}{{$image}}">
+          {{ end }}
+          <p class="is-size-7">{{ dateFormat "2006-01-02" .Params.Date}}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
           <div class="content">
-            <p>{{ .Content }}</p>
+            {{ .Content }}
           </div>
         </div>
         <div class="column">
           {{ $project := .Params.project }}
           {{ if $project }}
           <div class="contacts">
-            {{ range where (where .Site.Pages "Section" "projects") ".Params.project" "==" $project}}
+            {{ range where (where .Site.Pages "Section" "projects") ".Params.title" "==" $project}}
             <p class="is-size-7">{{ i18n "project" }}</p>
             <p class="title is-4 has-blue-text"><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></p>
-              <p>{{ .Summary }}</p>
+              <p>{{ .Summary }}(<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</p>
+            {{ end }}
+          </div>
+          <div class="contacts">
+            {{ with .Params.partners }}
+            <p class="is-size-7">{{ i18n "partners" }}</p>
+            {{ range . }}
+            <div><a href="{{ .url }}">{{ .name }}</a></div>
+            {{ end }}
             {{ end }}
           </div>
           {{ end }}

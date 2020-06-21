@@ -6,7 +6,7 @@
     {{ range  $index, $element := $flist }}
       <div class="item-{{ add $index 1 }}">
         <div class="featured-container">
-          <img src="{{ .Site.Params.Site.Subpath }}/{{ $element.Params.cover_image}}">
+          <img src="{{ print .Permalink $element.Params.cover_image}}">
           <a class="featured-caption is-pulled-left" href="{{ $element.Permalink | relURL }}" title="{{ $element.Title }}"><span class='spacer'></span>{{ $element.Title }}<span class='spacer'></span></a>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <div class="column is-one-third">
           <h3 class="is-size-3 has-text-centered"></h3>
           <div class="contacts">
-            <p class="has-text-weight-bold">{{ i18n "meetingInfo" }}<p>
+            <p class="has-text-weight-bold">{{ i18n "meetingInfo" }}</p>
             <p><span class="has-text-weight-bold">{{ i18n "where" }}</span> {{ .Site.Params.Club.Location }}</p>
             <p>{{ .Site.Params.Club.AddressLine1 }}</p>
             <p>{{ .Site.Params.Club.AddressLine2 }}, {{ .Site.Params.Club.Country }}</p>

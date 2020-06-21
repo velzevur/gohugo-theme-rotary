@@ -6992,7 +6992,8 @@ span.spacer {
 
 .contacts {
   background-color: #F8F9FA;
-  padding: 10px; }
+  padding: 10px;
+  margin-bottom: 10px; }
 
 .has-blue-text {
   color: #0C3C7C; }

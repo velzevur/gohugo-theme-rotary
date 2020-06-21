@@ -8,19 +8,15 @@
       </div>
       <div class="columns">
         <div class="column is-two-thirds">
-          <img src="{{ .Params.Image}}">
+          <img src="{{ print .Permalink .Params.Cover_image }}">
           <div class="content">
             <p>{{ .Content }}</p>
           </div>
         </div>
+        <div class="column is-one-third">
           <div>
-            <div class="contacts">
-              <p class="has-text-weight-bold">Тук ще има информация за самия
-              проект: от кога го правим, по кое от направленията на Ротари е,
-              кои са ни партньори и т.н.</p>
-            </div>
             <div class="content">
-                {{ $project := .Params.project }}
+                {{ $project := .Params.Title }}
                 {{ if $project }}
                 <p class="title is-4 has-blue-text">Новини</p>
                 {{ range where (where .Site.Pages "Section" "news") ".Params.project" "==" $project}}
@@ -33,7 +29,7 @@
                     </div>
                   </div>
                 {{ end }}
-              {{ end }}
+                {{ end }}
             </div>
           </div>
         </div>

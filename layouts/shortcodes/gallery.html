@@ -5,7 +5,7 @@
   <div class="container">
     <div class="columns is-multiline">
       {{- range $index, $img := .Page.Resources.Match $matchstr -}}
-      {{ $scaled := $img.Fill "100x80" }}
+      {{- $scaled := $img.Fill "100x80" }}
       <div class="column is-one-fifth">
         <img src="{{ $scaled.RelPermalink }}" class="has-rounded" onclick="openModal('{{ $modalid }}');currentSlide('{{ $id }}', {{ add $index 1 }})">
       </div>

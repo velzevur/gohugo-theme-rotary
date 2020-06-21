@@ -2,8 +2,7 @@
     <section class="section">
         <div class="container is-small">
             <div class="columns">
-                <div class="column is-one-third">
-                тук ще стоят иконки с линнкове за Fecebook, Instagram, Youtube и каквото още намерим за добре
+                <div class="column is-one-third"> {{ partial "social-follow.html" . }}
                 </div>
                 <div class="column is-one-third">
                 <p class="is-uppercase">{{ i18n "other-sites" }}</p>
@@ -27,10 +26,8 @@
         </div>
     </section>
   <div class="content has-text-centered">
-
     <p>
       &copy; {{ now.Format "2006" }} {{ .Site.Title }}
     </p>
-  <div>{{ partial "social-follow.html" . }}</div>
   </div>
  </footer>
