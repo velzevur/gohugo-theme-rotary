@@ -7,7 +7,7 @@
       {{- range $index, $img := .Page.Resources.Match $matchstr -}}
       {{- $scaled := $img.Fill "100x80" }}
       <div class="column is-one-fifth">
-        <img src="{{ $scaled.RelPermalink }}" class="has-rounded" onclick="openModal('{{ $modalid }}');currentSlide('{{ $id }}', {{ add $index 1 }})">
+        <img src="{{ $scaled.RelPermalink }}" class="has-rounded is-clickable" onclick="openModal('{{ $modalid }}');currentSlide('{{ $id }}', {{ add $index 1 }})">
       </div>
       {{ end }}
     </div>

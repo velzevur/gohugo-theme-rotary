@@ -11,7 +11,7 @@
           {{ $link := .Permalink }}
           {{ with .Params.image }}
           {{ $image := . }}
-          <img class="has-rounded-top" src="{{$link}}{{$image}}">
+          <img class="article has-rounded-top" src="{{$link}}{{$image}}">
           {{ end }}
           <p class="is-size-7">{{ dateFormat "2006-01-02" .Params.Date}}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
           <div class="content">
@@ -28,6 +28,7 @@
               <p>{{ .Summary }}(<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</p>
             {{ end }}
           </div>
+          {{ end }}
           <div class="contacts">
             {{ with .Params.partners }}
             <p class="is-size-7">{{ i18n "partners" }}</p>
@@ -36,7 +37,6 @@
             {{ end }}
             {{ end }}
           </div>
-          {{ end }}
           <div class="content">
             {{ $related := .Site.RegularPages.Related . | first 7 }}
             {{ if $related }}
