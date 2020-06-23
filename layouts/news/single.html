@@ -11,7 +11,7 @@
           {{ $link := .Permalink }}
           {{ with .Params.image }}
           {{ $image := . }}
-          <img class="article has-rounded-top" src="{{$link}}{{$image}}">
+          <img class="has-rounded-top" src="{{$link}}{{$image}}">
           {{ end }}
           <p class="is-size-7">{{ dateFormat "2006-01-02" .Params.Date}}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
           <div class="content">
