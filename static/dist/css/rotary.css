@@ -6956,7 +6956,7 @@ label.panel-block {
 
 .logo {
   display: inline-block;
-  background: url("/rotary/images/logo.png") no-repeat;
+  background: url("/images/logo.png") no-repeat;
   width: 206px;
   height: 77px;
   background-size: cover; }
