@@ -18,7 +18,7 @@
             <div class="content">
                 {{ $project := .Params.Title }}
                 {{ if $project }}
-                <p class="title is-4 has-blue-text">Новини</p>
+                <p class="title is-4 has-blue-text">{{ i18n "news" }}</p>
                 {{ range where (where .Site.Pages "Section" "news") ".Params.project" "==" $project}}
                   <div class="columns">
                     <div class="column is-one-third">
