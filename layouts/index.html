@@ -6,8 +6,14 @@
     {{ range  $index, $element := $flist }}
       <div class="item-{{ add $index 1 }}">
         <div class="featured-container">
-          <img src="{{ print .Permalink $element.Params.cover_image}}">
-          <a class="featured-caption is-pulled-left" href="{{ $element.Permalink | relURL }}" title="{{ $element.Title }}"><span class='spacer'></span>{{ $element.Title }}<span class='spacer'></span></a>
+          <a href="{{ $element.Permalink | relURL }}" title="{{ $element.Title }}">
+            <img src="{{ print .Permalink $element.Params.cover_image}}">
+            <span class="featured-caption is-pulled-left">
+              <span class='spacer'></span>
+              {{ $element.Title }}
+              <span class='spacer'></span>
+            </span>
+          </a>
         </div>
       </div>
     {{ end }}  
