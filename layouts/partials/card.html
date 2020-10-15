@@ -2,9 +2,14 @@
   <div class="card-image has-rounded-top">
     <figure class="image is-4by3 has-rounded-top">
       <a href="{{ .Permalink | relURL }}">
-        {{- $permalink := .Permalink }}
-        {{- with .Params.image -}}
-        <img class="has-rounded-top" src="{{ print $permalink . }}" alt="Placeholder image">
+        {{- $permalink := .Permalink -}}
+        {{- $card := . -}}
+        {{- $image := .Params.cover | default .Params.image -}}
+        {{- with $image -}}
+        {{- $resources := $card.Resources.Match . -}}
+        {{- $img := index ($resources) 0 -}}
+        {{- $scaled := $img.Resize "430x" -}}
+        <img class="has-rounded-top" src="{{ $scaled.RelPermalink }}" alt="Placeholder image">
         {{ end }}
       </a>
     </figure>

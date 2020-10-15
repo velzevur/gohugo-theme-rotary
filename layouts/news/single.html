@@ -29,14 +29,14 @@
             {{ end }}
           </div>
           {{ end }}
+          {{ with .Params.partners }}
           <div class="contacts">
-            {{ with .Params.partners }}
             <p class="is-size-7">{{ i18n "partners" }}</p>
             {{ range . }}
             <div><a href="{{ .url }}">{{ .name }}</a></div>
             {{ end }}
-            {{ end }}
           </div>
+          {{ end }}
           <div class="content">
             {{ $related := .Site.RegularPages.Related . | first 7 }}
             {{ if $related }}
