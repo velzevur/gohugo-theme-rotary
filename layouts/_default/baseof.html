@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content='{{ .Site.Title }}{{ with .Params.Title }}: {{ . }}{{ end }}'>
+    <meta name="keywords" content='{{ i18n "rotary" }}, {{ .Site.Title }}{{ with .Params.keywords}}, {{ delimit . ", " }}{{ end }}'>
     {{ hugo.Generator }}
     {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
     {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
@@ -29,6 +31,7 @@
     {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
       {{ template "_internal/google_analytics_async.html" . }}
     {{ end }}
+    {{ partial "victorhugo.html" . }}
 
   </head>
   <body class="layout-documentation page-columns">
