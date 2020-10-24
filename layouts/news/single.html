@@ -4,6 +4,7 @@
       <div class="columns">
         <div class="column is-two-thirds">
           <h3 class="is-size-3 has-text-centered">{{ .Title }}</h3>
+          {{ with .Params.Subtitle }}<h5 class="is-size-5 has-text-centered">{{ . }}</h5>{{ end }}
         </div>
       </div>
       <div class="columns">
