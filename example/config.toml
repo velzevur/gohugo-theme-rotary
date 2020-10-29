@@ -1,0 +1,151 @@
+baseURL = "https://rotarytriaditsa.org/"
+enableRobotsTXT = true
+DefaultContentLanguage = "bg"
+theme = "gohugo-theme-rotary"
+
+[permalinks]
+  news = "/:section/:year/:month/:title/"
+
+[languages]
+  [languages.bg]
+    title = "Ротари клуб София Триадица"
+    weight = 1
+    LanguageName = "Български"
+  [languages.en]
+    title = "Rotary club Sofia Triaditsa"
+    weight = 2
+    LanguageName = "English"
+    [[languages.en.menu.main]]
+        identifier = "Home"
+        name = "Home"
+        url = "/en"
+        weight = -110
+    [[languages.en.menu.main]]
+      identifier = "About"
+      name = "About"
+      weight = -100
+    [[languages.en.menu.main]]
+      name = "Contacts"
+      url = "/en/about/contact"
+      weight = -90
+      parent = "About"
+    [[languages.en.menu.main]]
+      name = "Our story"
+      url = "/en/about/history"
+      weight = -80
+      parent = "About"
+    [[languages.en.menu.main]]
+      name = "Projects"
+      url = "/en/projects"
+      weight = -70
+      parent = "About"
+    [[languages.en.menu.main]]
+      name = "Rotary Foundation"
+      url = "/en/rotary/foundation"
+      weight = -60
+    [[languages.en.menu.main]]
+      name = "News"
+      url = "/en/news/"
+      weight = -50
+    [languages.en.params]
+      [languages.en.params.club]
+        name ="Sofia Triaditsa"
+        country ="Bulgaria"
+        id = "88428"
+        district_url = "https://www.rotary-bulgaria.org/"
+        location = "Hotel Marinela"
+        addressLine1 = "Blvd James Bourchier 100"
+        addressLine2 = "1407 Lozenets, Sofia"
+        meetingTime = "7 pm, every Monday"
+  [languages.de]
+    title = "Rotary club Sofia Triaditsa"
+    weight = 3
+    LanguageName = "Deutsch"
+    [languages.de.params]
+      [languages.de.params.club]
+        name ="Sofia Triaditsa"
+        country ="Bulgaria"
+        id = "88428"
+        district_url = "https://www.rotary-bulgaria.org/"
+        location = "Hotel Marinela"
+        addressLine1 = "Blvd James Bourchier 100"
+        addressLine2 = "1407 Lozenets, Sofia"
+        meetingTime = "7 pm, jeden Montag"
+    [[languages.de.menu.main]]
+        identifier = "Home"
+        name = "Startseite"
+        url = "/de"
+        weight = -110
+  [languages.sv]
+    title = "Rotary club Sofia Triaditsa"
+    weight = 3
+    LanguageName = "Svenska"
+    [[languages.sv.menu.main]]
+        identifier = "Home"
+        name = "Hem"
+        url = "/sv"
+        weight = -110
+    [languages.sv.params]
+      [languages.sv.params.club]
+        name ="Sofia Triaditsa"
+        country ="Bulgaria"
+        id = "88428"
+        district_url = "https://www.rotary-bulgaria.org/"
+        location = "Hotel Marinela"
+        addressLine1 = "Blvd James Bourchier 100"
+        addressLine2 = "1407 Lozenets, Sofia"
+        meetingTime = "7 pm, varje måndag"
+
+
+
+title = "Rotary club Sofia Triaditsa"
+
+[params]
+  facebook = "https://www.facebook.com/Rotary-Club-of-Sofia-Triaditsa-%D0%A0%D0%BE%D1%82%D0%B0%D1%80%D0%B8-%D0%BA%D0%BB%D1%83%D0%B1-%D0%A1%D0%BE%D1%84%D0%B8%D1%8F-%D0%A2%D1%80%D0%B8%D0%B0%D0%B4%D0%B8%D1%86%D0%B0-1922306497989773"
+  [params.site]
+    subpath = ""
+  [params.club]
+    name ="София Триадица"
+    country ="България"
+    district_url = "https://www.rotarydistrict2482.org/"
+    id = "88428"
+    location = "Хотел Маринела"
+    addressLine1 = "Булевард Джеймс Баучер 100"
+    addressLine2 = "1407 Лозенец, София"
+    meetingTime = "19:00, всеки понеделник"
+
+
+[menu]
+
+  [[menu.main]]
+    identifier = "Home"
+    name = "Начало"
+    url = "/"
+    weight = -110
+
+  [[menu.main]]
+    identifier = "About"
+    name = "За нас"
+    weight = -100
+
+  [[menu.main]]
+    name = "Контакти"
+    url = "/about/contact"
+    weight = -90
+    parent = "About"
+
+  [[menu.main]]
+    name = "История"
+    url = "/about/history"
+    weight = -80
+    parent = "About"
+
+  [[menu.main]]
+    name = "Проекти"
+    url = "/projects"
+    weight = -70
+    parent = "About"
+  [[menu.main]]
+    name = "Новини"
+    url = "/news/"
+    weight = -80
