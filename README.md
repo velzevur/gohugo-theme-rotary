@@ -173,9 +173,12 @@ TODO
 
 ### How to use
 
-`hugo -D serve` builds and runs the website. You can access it on
+There is a Makefile in the `example/` dir: it has some general commands to
+use:
+`make serve` builds and runs the website. You can access it on
 `localhost:1313`. Any chagnes being made to the config, templates or contents
 would result in rebuilding the site.
 
-`HUGO_ENV=production hugo` builds the website with `robots.txt` set to allow
-crawlers to index all pages.
+`make publish` builds the website with `robots.txt` set to allow
+crawlers to index all pages. It also publishes it to the FTP server. Feel free
+to adjust it to your needs.
