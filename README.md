@@ -13,6 +13,78 @@ The intention of this guide is to make it possible to setup and run a website
 even if one lacks deep understanding of Hugo. Bear in mind that still there is
 some domaign specific knowledge required.
 
+## How to setup
+
+While contents can vary greatly, the general structure of the project shall
+look something like this:
+
+```
+.
+├── Makefile
+├── config.toml
+├── content
+│   ├── about
+│   │   └── history
+│   ├── news
+│   └── projects
+├── public
+├── static
+│   └── img
+│       └── club-picture.jpg
+└── themes
+    └── gohugo-theme-rotary
+```
+
+There is an example Makefile and config.toml in `./example/`. You are expected
+to adapt that to your needs.
+
+Your data lives in the `content` dir. It is the home of the markdown and
+images for your pages. Those are later on applied to the templates of the
+theme. You can have different directories there and those represent the URLs
+of your website. For example if you have directory `./content/rotary/` its
+contents would be hosted under `baseURL/rotary`. Furthermore, if you have a
+subdir in it, ex. `./content/rotary/foundation`, it would be served under
+`baseURL/rotary/foundation`. This allows a flexible structure of the website
+to match your needs.
+
+Despite this, there are some special directories that are expected by the
+theme.
+
+* `content/about/history/` - on the landing page there is a picture and some
+  text beneath it. This directory is the holder of the text.
+
+* `content/projects/` - this is where the projects are defined. Each project
+  lives in its own subdir.
+
+* `content/news/` - this is where the news go. Each news lives in its own
+  subdir
+
+* `public` - this is where the static files for the website are produced. The
+  publish script in the `example/Makefile` uploads the contents of this
+  directory to the FTP
+
+* `static/img/club-picture.jpg` - this is the image on the landing page
+
+* `themes/gohugo-theme-rotary` - this is where you're expected to clone this
+  repo
+
+Each piece of data can be defined in a different language. The language itself
+is part of the name of the file and it corresponds to the language code - for
+example `en` for English as shown:
+
+```
+ls content/about/history/
+charter.png	index.bg.md	index.en.md
+```
+
+In this example, the `index.en.md` would be shown in the English language
+version while the `index.bg.md` would be visible in the Bulgarian one. Note
+that there is no German, nor Swedish index files so nothing would be shown in
+those language versions of the website. If we want to have such pages, we
+shall add the `index.de.md` or `index.se.md` respectively. This allows
+building custom-fit experiences for the different languages your website would
+support, if any.
+
 ### Config
 
 You can find an example config in `/example/config.toml`. It is adapted for
@@ -138,40 +210,11 @@ a set of params. They define the menu of the website.
 It is worth mentioning that the default menu and corresponding params are
 taken out of the languages section and is at the end of the config file.
 
-### Directories structure
-
-As a website structure, it is quite flexible. One could have all types of
-sections listed in the `contents` dir. There are a few special, though:
-
-* `content/about/history/` - this is where the text under the main image goes
-
-* `content/projects/` - this is where the projects are defined. Each project
-  lives in its own subdir.
-
-* `content/news/` - this is where the news go. Each news lives in its own
-  subdir
-
-Each piece of data can be defined in a different language. The language itself
-is part of the name of the file and it corresponds to the language code - for
-example `en` for English as shown:
-
-```
-ls content/about/history/
-charter.png	index.bg.md	index.en.md
-```
-
-In this example, the `index.en.md` would be shown in the English language
-version while the `index.bg.md` would be visible in the Bulgarian one. Note
-that there is no German, nor Swedish index files so nothing would be shown in
-those language versions of the website. If we want to have such pages, we
-shall add the `index.de.md` or `index.se.md` respectively.
-
-
 ### Markdown structure
 
 TODO
 
-### How to use
+## Building and deployment
 
 There is a Makefile in the `example/` dir: it has some general commands to
 use:
