@@ -210,6 +210,20 @@ a set of params. They define the menu of the website.
 It is worth mentioning that the default menu and corresponding params are
 taken out of the languages section and is at the end of the config file.
 
+#### Params
+
+Those are a set of global variables for the website. They are pretty obvious
+how to use.
+
+```
+[params]
+  facebook = "your facebook page url"
+  [params.tracking]
+    googleTag = "your google tag id"
+```
+
+
+
 ### Markdown structure
 
 TODO

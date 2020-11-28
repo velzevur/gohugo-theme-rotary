@@ -32,6 +32,19 @@
       {{ template "_internal/google_analytics_async.html" . }}
     {{ end }}
     {{ partial "victorhugo.html" . }}
+    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+    {{ with .Site.Params.Tracking.GoogleTag }}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{ . }}');
+    </script>
+    {{ end }}
+    {{ end }}
 
   </head>
   <body class="layout-documentation page-columns">
