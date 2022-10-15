@@ -25,8 +25,8 @@ $link: $primary;
 $link-hover: $primary;
 
 
-@import "./bulma-0.7.5/bulma.sass";
-@import "./bulma-carousel-master/src/sass/index.sass";
+@import "./node_modules/bulma/bulma.sass";
+@import "./node_modules/bulma-carousel/src/sass/index.sass";
 
 .has-rounded-top {
   border-top-right-radius: $border-radius;
