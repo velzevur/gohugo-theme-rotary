@@ -28,4 +28,5 @@ npm-debug.log
 
 /junit.xml
 .sass-cache
+sass/node_modules
 
