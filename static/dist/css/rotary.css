@@ -1,4 +1,14 @@
 @charset "UTF-8";
+@font-face {
+  font-family: rotaryFont;
+  font-weight: 100;
+  src: url(/fonts/OpenSans-VariableFont_wdth_wght.ttf);
+}
+@font-face {
+  font-family: rotaryFontBold;
+  font-weight: 700;
+  src: url(/fonts/OpenSans-VariableFont_wdth_wght.ttf);
+}
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 .pagination-previous,
@@ -10469,6 +10479,41 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   width: 206px;
   height: 77px;
   background-size: cover;
+}
+
+.logo1 {
+  text-align: right;
+}
+
+.logo1 .mark {
+  color: #0C3C7C;
+  font-family: rotaryFontBold;
+  line-height: 95%;
+  margin-right: 106px;
+}
+
+.logo1 .mark-small {
+  color: #0C3C7C;
+  font-family: rotaryFontBold;
+  line-height: 95%;
+  margin-right: 62px;
+}
+
+.logo1 .club-name1 {
+  color: #0C3C7C;
+  font-family: rotaryFont;
+  margin-right: 106px;
+}
+
+.logo1 .club-name1-small {
+  color: #0C3C7C;
+  font-family: rotaryFont;
+  margin-right: 62px;
+}
+
+.logo1 img {
+  float: right;
+  display: inline-block;
 }
 
 .footer {

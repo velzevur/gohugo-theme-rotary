@@ -1,0 +1,32 @@
+<div class="mt-0 pt-0">
+  <section class="section header pb-4 pt-4">
+    <div class="container is-small is-hidden-mobile">
+      <a href="{{.Site.Params.Site.Subpath }}/{{ .Site.Language.Lang }}">
+        <div class="columns">
+            <div class="column">
+                <div class="is-pulled-left">
+                    <div class="logo1">
+                        <img src="/images/favicons/favicon-96x96.png"/>
+                        </br>
+                        <p class="mark is-size-2">Rotary</p>
+                        <p class="club-name1">{{ .Site.Params.clubName }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="container is-small is-inline-flex-mobile is-hidden-tablet-only is-hidden-desktop-only is-hidden-widescreen-only  is-hidden-fullhd pt-0">
+      <a href="{{.Site.Params.Site.Subpath }}/{{ .Site.Language.Lang }}">
+        <div class="is-pulled-left">
+          <div class="logo1">
+            <img src="/images/favicons/apple-touch-icon-57x57.png" width="50" height="50" />
+            <p class="mark-small is-size-5 pt-3" >Rotary</p>
+            <p class="club-name1-small is-size-7">{{ .Site.Params.clubName }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+</div>
