@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+@font-face {
+  font-family: rotaryFont;
+  font-weight: 100;
+  src: url(/fonts/OpenSans-VariableFont_wdth_wght.ttf);
+}
+
+@font-face {
+  font-family: rotaryFontBold;
+  font-weight: 700;
+  src: url(/fonts/OpenSans-VariableFont_wdth_wght.ttf);
+}
+
 // Set Rotary colors
 $sky-blue: #019FCB;
 $royal-blue: #0C3C7C;
@@ -49,6 +61,7 @@ $link-hover: $primary;
     }
     .logo {
         display: inline-block;
+        font-family: rotaryFont;
         background: url("/images/white-logo.png") no-repeat; width: 213px; height: 80px; background-size: cover;  
     }
     .header {
@@ -66,6 +79,39 @@ $link-hover: $primary;
     }
 
 }
+
+.logo1 {
+    text-align: right;
+}
+.logo1 .mark{
+    color: $royal-blue;
+    font-family: rotaryFontBold;
+    line-height: 95%;
+    margin-right: 106px;
+}
+.logo1 .mark-small{
+    color: $royal-blue;
+    font-family: rotaryFontBold;
+    line-height: 95%;
+    margin-right: 62px;
+}
+.logo1 .club-name1{
+    color: $royal-blue;
+    font-family: rotaryFont;
+    margin-right: 106px;
+}
+
+.logo1 .club-name1-small{
+    color: $royal-blue;
+    font-family: rotaryFont;
+    margin-right: 62px;
+}
+
+.logo1 img {
+    float: right;
+    display: inline-block;
+}
+
 .footer{
     padding-top: 0px;
     background-color: $gray-lighter;
