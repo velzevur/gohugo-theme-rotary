@@ -8,7 +8,7 @@
         {{- with $image -}}
         {{- $resources := $card.Resources.Match . -}}
         {{- $img := index ($resources) 0 -}}
-        {{- $scaled := $img.Resize "430x" -}}
+        {{- $scaled := $img.Fill "430x324" -}}
         <img class="has-rounded-top" src="{{ $scaled.RelPermalink }}" alt="Placeholder image">
         {{ end }}
       </a>
