@@ -41,7 +41,7 @@ other = "andere Seiten"
 other = "Rotary"
 
 [meetingInfo]
-other = "Besprechungsinfo"
+other = "Unsere Treffen"
 
 [where]
 other = "Wo"
@@ -56,4 +56,4 @@ other = "Klub"
 other = "Nachrichten"
 
 [project]
-other = "TODO"
+other = "Projekt"
