@@ -36,14 +36,24 @@
         <meta name="twitter:description" content="{{ . }}">
     {{ end }}
     <meta property="og:url" content="{{ .Permalink }}">
+    {{ $social_image := .Resources.GetMatch .Params.social_image }}
     {{ $image := .Resources.GetMatch .Params.image }}
-    {{ if $image }}
-        {{ $image := $image.Fill "1200x630" }}
+    {{ if $social_image }}
+        {{ $social_image := $social_image.Fill "1200x630" }}
         {{- $logo := (resources.Get "images/ClubLogo.png") }}
-        {{- $image := $image.Filter (images.Overlay $logo 0 (sub $image.Height $logo.Height) ) }}
-        {{- $finalUrl := $image.Permalink -}}
+        {{- $social_image := $social_image.Filter (images.Overlay $logo 0 (sub $social_image.Height $logo.Height) ) }}
+        {{- $finalUrl := $social_image.Permalink -}}
         <meta property="og:image" content="{{ $finalUrl | safeURL }}">
         <meta name="twitter:image:src" content="{{ $finalUrl | safeURL }}">
+    {{ else }}
+        {{ if $image }}
+            {{ $image := $image.Fill "1200x630" }}
+            {{- $logo := (resources.Get "images/ClubLogo.png") }}
+            {{- $image := $image.Filter (images.Overlay $logo 0 (sub $image.Height $logo.Height) ) }}
+            {{- $finalUrl := $image.Permalink -}}
+            <meta property="og:image" content="{{ $finalUrl | safeURL }}">
+            <meta name="twitter:image:src" content="{{ $finalUrl | safeURL }}">
+        {{ end }}
     {{ end }}
 
     <meta name="twitter:url" content="{{ .Permalink }}">
