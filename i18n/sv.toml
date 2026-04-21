@@ -55,5 +55,14 @@ other = "Klubb"
 [news]
 other = "Nyheter"
 
+[nextNewsPage]
+other = ">>"
+
+[previousNewsPage]
+other = "<<"
+
+[newsPage]
+other = "Nyhetssida"
+
 [project]
 other = "TODO"

@@ -55,6 +55,15 @@ other = "Club"
 [news]
 other = "News"
 
+[nextNewsPage]
+other = ">>"
+
+[previousNewsPage]
+other = "<<"
+
+[newsPage]
+other = "News page"
+
 [project]
 other = "Project"
 

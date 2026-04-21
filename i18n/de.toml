@@ -55,5 +55,14 @@ other = "Klub"
 [news]
 other = "Nachrichten"
 
+[nextNewsPage]
+other = ">>"
+
+[previousNewsPage]
+other = "<<"
+
+[newsPage]
+other = "Nachrichtenseite"
+
 [project]
 other = "Projekt"

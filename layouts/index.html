@@ -49,12 +49,14 @@
     </div>
   </section>
 
-  {{ with .Site.GetPage "/news" }}
+  {{ $newsPages := (where .Site.RegularPages "Section" "news").ByDate.Reverse }}
+  {{ $firstNewsPage := first 9 $newsPages }}
+  {{ if gt (len $newsPages) 0 }}
   <section class="section">
     <div class="container is-small">
       <h3 class="is-size-3">{{ i18n "news" }}</h3>
       <div class="columns is-multiline">
-      {{ range .Pages }}
+      {{ range $firstNewsPage }}
 
         <div class="column is-one-third">
           {{ partial "card.html" . }}
@@ -63,6 +65,14 @@
 
       {{ end }}
       </div>
+
+      {{ if gt (len $newsPages) 9 }}
+      {{ with .Site.GetPage "/news" }}
+      <div class="has-text-centered">
+        <a class="button is-link" href="{{ "news/page/2/" | relLangURL }}">{{ i18n "nextNewsPage" }}</a>
+      </div>
+      {{ end }}
+      {{ end }}
     </div>
   </section>
   {{ end }}

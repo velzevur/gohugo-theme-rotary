@@ -55,6 +55,15 @@ other = "Клуб"
 [news]
 other = "Новини"
 
+[nextNewsPage]
+other = ">>"
+
+[previousNewsPage]
+other = "<<"
+
+[newsPage]
+other = "Страница с новини"
+
 [project]
 other = "Проект"
 

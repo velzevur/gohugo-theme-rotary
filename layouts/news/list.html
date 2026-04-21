@@ -1,14 +1,55 @@
 {{ define "main" }}
+  {{ $newsPages := (where .Site.RegularPages "Section" "news").ByDate.Reverse }}
+  {{ $paginator := .Paginate $newsPages 9 }}
   <section class="section">
     <div class="container is-small">
+      {{ with .Content }}
+      <div class="content">
+        {{ . }}
+      </div>
+      {{ end }}
+
+      <h3 class="is-size-3">{{ i18n "news" }}</h3>
       <div class="columns is-multiline">
-      {{ range .Pages }}
+      {{ range $paginator.Pages }}
 
         <div class="column is-one-third">
           {{ partial "card.html" . }}
         </div>
+
       {{ end }}
       </div>
+
+      {{ if gt $paginator.TotalPages 1 }}
+      <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        {{ with $paginator.Prev }}
+        <a class="pagination-previous" href="{{ .URL }}">{{ i18n "previousNewsPage" }}</a>
+        {{ else }}
+        <a class="pagination-previous" disabled>{{ i18n "previousNewsPage" }}</a>
+        {{ end }}
+
+        <ul class="pagination-list">
+          {{ range $paginator.Pagers }}
+          <li>
+            <a
+              class="pagination-link{{ if eq . $paginator }} is-current{{ end }}"
+              href="{{ .URL }}"
+              aria-label="Go to page {{ .PageNumber }}"
+              {{ if eq . $paginator }}aria-current="page"{{ end }}
+            >
+              {{ .PageNumber }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+
+        {{ with $paginator.Next }}
+        <a class="pagination-next" href="{{ .URL }}">{{ i18n "nextNewsPage" }}</a>
+        {{ else }}
+        <a class="pagination-next" disabled>{{ i18n "nextNewsPage" }}</a>
+        {{ end }}
+      </nav>
+      {{ end }}
     </div>
   </section>
 
