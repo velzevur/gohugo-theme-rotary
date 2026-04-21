@@ -1,0 +1,86 @@
+{{- $page := .Page -}}
+{{- $description := .Description -}}
+{{- $image := .Image -}}
+{{- $club := $page.Site.Params.club -}}
+{{- $orgID := printf "%s#organization" $page.Site.BaseURL -}}
+{{- $placeID := printf "%s#meeting-place" $page.Site.BaseURL -}}
+{{- $meetingEventID := printf "%s#weekly-meeting" $page.Site.BaseURL -}}
+{{- $websiteID := printf "%s#website" $page.Site.BaseURL -}}
+{{- $siteDescription := $page.Site.Params.description | default $page.Site.Title -}}
+{{- $address := dict "@type" "PostalAddress" "streetAddress" $club.addressLine1 "addressLocality" $club.addressLine2 "addressCountry" $club.country -}}
+{{- $meetingPlace := dict "@type" "Place" "@id" $placeID "name" $club.location "address" $address -}}
+{{- $organization := dict "@type" (slice "Organization" "NGO") "@id" $orgID "name" $page.Site.Title "url" $page.Site.BaseURL "logo" ("/images/logo.png" | absURL) "description" $siteDescription "address" $address "location" (dict "@id" $placeID) "areaServed" $club.country -}}
+{{- with $page.Site.Params.clubName -}}
+  {{- $organization = merge $organization (dict "alternateName" .) -}}
+{{- end -}}
+{{- with $club.id -}}
+  {{- $organization = merge $organization (dict "identifier" .) -}}
+{{- end -}}
+{{- $sameAs := slice -}}
+{{- with $page.Site.Params.facebook -}}
+  {{- $sameAs = $sameAs | append . -}}
+{{- end -}}
+{{- with $club.district_url -}}
+  {{- $sameAs = $sameAs | append . -}}
+{{- end -}}
+{{- if gt (len $sameAs) 0 -}}
+  {{- $organization = merge $organization (dict "sameAs" $sameAs) -}}
+{{- end -}}
+{{- $contactEmail := $page.Site.Params.email | default $page.Site.Params.contactEmail | default $page.Site.Params.contact.email -}}
+{{- with $contactEmail -}}
+  {{- $organization = merge $organization (dict "email" . "contactPoint" (slice (dict "@type" "ContactPoint" "email" . "contactType" "general inquiries" "areaServed" $club.country))) -}}
+{{- end -}}
+{{- $website := dict "@type" "WebSite" "@id" $websiteID "name" $page.Site.Title "url" $page.Site.BaseURL "publisher" (dict "@id" $orgID) -}}
+{{- $graph := slice $organization $meetingPlace $website -}}
+{{- if $page.IsPage -}}
+  {{- if eq $page.Section "news" -}}
+    {{- $article := dict "@type" "Article" "@id" (printf "%s#article" $page.Permalink) "mainEntityOfPage" $page.Permalink "headline" $page.Title "description" $description "url" $page.Permalink "datePublished" ($page.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" ($page.Lastmod.Format "2006-01-02T15:04:05Z07:00") "publisher" (dict "@id" $orgID) "author" (dict "@id" $orgID) -}}
+    {{- with $image -}}
+      {{- $article = merge $article (dict "image" .) -}}
+    {{- end -}}
+    {{- with $page.Params.tags -}}
+      {{- $article = merge $article (dict "keywords" .) -}}
+    {{- end -}}
+    {{- $graph = $graph | append $article -}}
+  {{- else -}}
+    {{- $webPage := dict "@type" "WebPage" "@id" (printf "%s#webpage" $page.Permalink) "name" $page.Title "description" $description "url" $page.Permalink "dateModified" ($page.Lastmod.Format "2006-01-02T15:04:05Z07:00") "isPartOf" (dict "@id" $websiteID) "publisher" (dict "@id" $orgID) -}}
+    {{- $graph = $graph | append $webPage -}}
+  {{- end -}}
+  {{- $eventStart := $page.Params.eventStart | default $page.Params.event_start | default $page.Params.startDate | default $page.Params.start_date -}}
+  {{- if or $page.Params.event $eventStart -}}
+    {{- $eventLocation := $page.Params.eventLocation | default $page.Params.event_location | default $page.Params.where | default $club.location -}}
+    {{- $event := dict "@type" "Event" "@id" (printf "%s#event" $page.Permalink) "name" $page.Title "description" $description "url" $page.Permalink "organizer" (dict "@id" $orgID) "location" (dict "@type" "Place" "name" $eventLocation) "eventStatus" "https://schema.org/EventScheduled" "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode" -}}
+    {{- if $eventStart -}}
+      {{- $event = merge $event (dict "startDate" (time $eventStart).Format "2006-01-02T15:04:05Z07:00") -}}
+    {{- else -}}
+      {{- $event = merge $event (dict "startDate" ($page.Date.Format "2006-01-02T15:04:05Z07:00")) -}}
+    {{- end -}}
+    {{- with $page.Params.eventEnd | default $page.Params.event_end | default $page.Params.endDate | default $page.Params.end_date -}}
+      {{- $event = merge $event (dict "endDate" (time .).Format "2006-01-02T15:04:05Z07:00") -}}
+    {{- end -}}
+    {{- with $image -}}
+      {{- $event = merge $event (dict "image" .) -}}
+    {{- end -}}
+    {{- $graph = $graph | append $event -}}
+  {{- end -}}
+{{- end -}}
+{{- if $page.IsHome -}}
+  {{- $meeting := dict "@type" "Event" "@id" $meetingEventID "name" (printf "%s meeting" $page.Site.Title) "description" $club.meetingTime "organizer" (dict "@id" $orgID) "location" (dict "@id" $placeID) "eventSchedule" (dict "@type" "Schedule" "repeatFrequency" "P1W" "byDay" "https://schema.org/Monday") "eventStatus" "https://schema.org/EventScheduled" "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode" -}}
+  {{- with $club.meetingStartTime -}}
+    {{- $meeting = merge $meeting (dict "eventSchedule" (dict "@type" "Schedule" "repeatFrequency" "P1W" "byDay" "https://schema.org/Monday" "startTime" .)) -}}
+  {{- end -}}
+  {{- $graph = $graph | append $meeting -}}
+{{- end -}}
+{{- if not $page.IsHome -}}
+  {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" $page.Site.Title "item" $page.Site.BaseURL) -}}
+  {{- $position := 2 -}}
+  {{- range $page.Ancestors.Reverse -}}
+    {{- if not .IsHome -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) -}}
+      {{- $position = add $position 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" $page.Title "item" $page.Permalink) -}}
+  {{- $graph = $graph | append (dict "@type" "BreadcrumbList" "itemListElement" $items) -}}
+{{- end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

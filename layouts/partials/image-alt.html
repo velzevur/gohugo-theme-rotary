@@ -1,0 +1,3 @@
+{{- $page := .Page -}}
+{{- $alt := .Alt | default $page.Params.image_alt | default $page.Params.cover_alt | default $page.Title | default $page.Site.Title -}}
+{{- return ($alt | plainify | htmlUnescape | replaceRE "\\s+" " " | strings.TrimSpace) -}}

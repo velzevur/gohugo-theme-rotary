@@ -1,0 +1,28 @@
+{{- $page := . -}}
+{{- $url := "" -}}
+{{- $candidates := slice .Params.social_image .Params.image .Params.cover .Params.cover_image -}}
+{{- range $candidates -}}
+  {{- if and (not $url) . -}}
+    {{- $path := . -}}
+    {{- $resource := $page.Resources.GetMatch $path -}}
+    {{- if $resource -}}
+      {{- $processed := $resource.Fill "1200x630" -}}
+      {{- with resources.Get "images/ClubLogo.png" -}}
+        {{- $processed = $processed.Filter (images.Overlay . 0 (sub $processed.Height .Height)) -}}
+      {{- end -}}
+      {{- $url = $processed.Permalink -}}
+    {{- else if or (hasPrefix $path "http://") (hasPrefix $path "https://") -}}
+      {{- $url = $path -}}
+    {{- else -}}
+      {{- $url = $path | absURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $url -}}
+  {{- with resources.Get "images/logo.png" -}}
+    {{- $url = .Permalink -}}
+  {{- else -}}
+    {{- $url = "/images/logo.png" | absURL -}}
+  {{- end -}}
+{{- end -}}
+{{- return $url -}}

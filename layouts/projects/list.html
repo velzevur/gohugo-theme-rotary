@@ -6,7 +6,7 @@
           <div class="has-rounded card">
             <div class="card-image">
               <figure class="image">
-                <img src="{{ partial "page-resource-url.html" (dict "Page" . "Path" .Params.cover_image) }}" alt="{{ .Title }}">
+                <img src="{{ partial "page-resource-url.html" (dict "Page" . "Path" .Params.cover_image) }}" alt="{{ partial "image-alt.html" (dict "Page" .) }}">
               </figure>
             </div>
             <div class="card-content">

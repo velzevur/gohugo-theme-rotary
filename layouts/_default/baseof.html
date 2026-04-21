@@ -3,10 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ block "title" . }}{{ with .Params.Title }} | {{ . }}{{ end }}{{ .Site.Title }}{{ end }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content='{{ .Site.Title }}{{ with .Params.Title }}: {{ . }}{{ end }}'>
-    <meta name="keywords" content='{{ i18n "rotary" }}, {{ .Site.Title }}{{ with .Params.keywords}}, {{ delimit . ", " }}{{ end }}'>
+    {{ block "seo" . }}{{ partial "seo/head.html" . }}{{ end }}
 
     <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
@@ -25,48 +23,7 @@
     <link rel="manifest" href="/images/favicons/manifest.json">
     <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#0033a0">
 
-
-    <meta property="og:site_name" content="{{ .Site.Title }}">
-    {{ with .Params.Title }}
-        <meta property="og:title" content="{{ . }}">
-        <meta name="twitter:title" content="{{ . }}">
-    {{ end }}
-    {{ with .Summary }}
-        <meta property="og:description" content="{{ . }}">
-        <meta name="twitter:description" content="{{ . }}">
-    {{ end }}
-    <meta property="og:url" content="{{ .Permalink }}">
-    {{ $social_image := .Resources.GetMatch .Params.social_image }}
-    {{ $image := .Resources.GetMatch .Params.image }}
-    {{ if $social_image }}
-        {{ $social_image := $social_image.Fill "1200x630" }}
-        {{- $logo := (resources.Get "images/ClubLogo.png") }}
-        {{- $social_image := $social_image.Filter (images.Overlay $logo 0 (sub $social_image.Height $logo.Height) ) }}
-        {{- $finalUrl := $social_image.Permalink -}}
-        <meta property="og:image" content="{{ $finalUrl | safeURL }}">
-        <meta name="twitter:image:src" content="{{ $finalUrl | safeURL }}">
-    {{ else }}
-        {{ if $image }}
-            {{ $image := $image.Fill "1200x630" }}
-            {{- $logo := (resources.Get "images/ClubLogo.png") }}
-            {{- $image := $image.Filter (images.Overlay $logo 0 (sub $image.Height $logo.Height) ) }}
-            {{- $finalUrl := $image.Permalink -}}
-            <meta property="og:image" content="{{ $finalUrl | safeURL }}">
-            <meta name="twitter:image:src" content="{{ $finalUrl | safeURL }}">
-        {{ end }}
-    {{ end }}
-
-    <meta name="twitter:url" content="{{ .Permalink }}">
-    <meta name="twitter:domain" content="{{ .Site.BaseURL }}">
-
     {{ hugo.Generator }}
-    {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
-    {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-    {{ else }}
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    {{ end }}
-
     <link rel="stylesheet" href="{{ .Site.Params.Site.Subpath }}/dist/css/rotary.css">
 
     {{ block "favicon" . }}

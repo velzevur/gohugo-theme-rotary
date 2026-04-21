@@ -7,7 +7,7 @@
       <div class="item-{{ add $index 1 }}">
         <div class="featured-container">
           <a href="{{ $element.Permalink | relURL }}" title="{{ $element.Title }}">
-            <img src="{{ partial "page-resource-url.html" (dict "Page" $element "Path" $element.Params.cover_image) }}">
+            <img src="{{ partial "page-resource-url.html" (dict "Page" $element "Path" $element.Params.cover_image) }}" alt="{{ partial "image-alt.html" (dict "Page" $element) }}">
             <span class="featured-caption is-pulled-left">
               <span class='spacer'></span>
               {{ $element.Title }}
@@ -26,14 +26,14 @@
       <div class="columns">
         <div class="column is-two-thirds">
           <div class="section-heading">
-            <h3 class="is-size-3">{{ .Site.Title }}</h3>
+            <h1 class="is-size-3">{{ .Site.Title }}</h1>
           </div>
         </div>
       </div>
       <div class="columns">
         <div class="column is-two-thirds">
           <div class="home-intro">
-            <img src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg">
+            <img src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg" alt="{{ .Site.Title }}">
             <div class="home-intro-copy">
               {{ with .Site.GetPage "/about/history" }}
               <p>{{ .Summary }}</p>
@@ -42,7 +42,6 @@
           </div>
         </div>
         <div class="column is-one-third">
-          <h3 class="is-size-3 has-text-centered"></h3>
           <div class="contacts">
             <p class="has-text-weight-bold">{{ i18n "meetingInfo" }}</p>
             <p><span class="has-text-weight-bold">{{ i18n "where" }}</span> {{ .Site.Params.Club.Location }}</p>
@@ -61,7 +60,7 @@
   <section class="section">
     <div class="container is-small">
       <div class="section-heading">
-        <h3 class="is-size-3">{{ i18n "news" }}</h3>
+        <h2 class="is-size-3">{{ i18n "news" }}</h2>
       </div>
       <div class="columns is-multiline">
       {{ range $firstNewsPage }}

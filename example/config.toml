@@ -3,6 +3,9 @@ enableRobotsTXT = true
 DefaultContentLanguage = "bg"
 theme = "gohugo-theme-rotary"
 
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", "date", "publishDate"]
+
 [permalinks]
   news = "/:section/:year/:month/:title/"
 
@@ -57,6 +60,7 @@ theme = "gohugo-theme-rotary"
         addressLine1 = "Blvd James Bourchier 100"
         addressLine2 = "1407 Lozenets, Sofia"
         meetingTime = "7 pm, every Monday"
+        meetingStartTime = "19:00"
   [languages.de]
     title = "Rotary club Sofia Triaditsa"
     weight = 3
@@ -71,6 +75,7 @@ theme = "gohugo-theme-rotary"
         addressLine1 = "Blvd James Bourchier 100"
         addressLine2 = "1407 Lozenets, Sofia"
         meetingTime = "7 pm, jeden Montag"
+        meetingStartTime = "19:00"
     [[languages.de.menu.main]]
         identifier = "Home"
         name = "Startseite"
@@ -95,6 +100,7 @@ theme = "gohugo-theme-rotary"
         addressLine1 = "Blvd James Bourchier 100"
         addressLine2 = "1407 Lozenets, Sofia"
         meetingTime = "7 pm, varje måndag"
+        meetingStartTime = "19:00"
 
 
 
@@ -116,6 +122,7 @@ title = "Rotary club Sofia Triaditsa"
     addressLine1 = "Булевард Джеймс Баучер 100"
     addressLine2 = "1407 Лозенец, София"
     meetingTime = "19:00, всеки понеделник"
+    meetingStartTime = "19:00"
 
 
 [menu]

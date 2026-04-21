@@ -9,7 +9,7 @@
         {{- $resources := $card.Resources.Match . -}}
         {{- $img := index ($resources) 0 -}}
         {{- $scaled := $img.Fill "430x324" -}}
-        <img class="has-rounded-top" src="{{ $scaled.RelPermalink }}" alt="Placeholder image">
+        <img class="has-rounded-top" src="{{ $scaled.RelPermalink }}" alt="{{ partial "image-alt.html" (dict "Page" $card) }}">
         {{ end }}
       </a>
     </figure>

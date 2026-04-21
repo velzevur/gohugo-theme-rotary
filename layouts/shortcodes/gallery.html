@@ -9,7 +9,7 @@
         {{- $scaled := $img.Fill "100x80" }}
         <div class="column is-one-fifth">
             <a href="{{ $img }}" >
-                <img src="{{ $scaled }}" alt="" class="has-rounded"/>
+                <img src="{{ $scaled }}" alt="{{ partial "image-alt.html" (dict "Page" $.Page "Alt" (printf "%s %d" $.Page.Title (add $index 1))) }}" class="has-rounded"/>
             </a>
         </div>
         {{ end }}
