@@ -1,19 +1,14 @@
 {{- $matchstr := (print (.Get "subdir") "/*") -}}
 {{- $id :=  (print "gallery-" (delimit (shuffle (seq 1 9)) "")) -}}
-<div class="section {{ .Get "class" }}" id="{{ $id }}">
-  {{- $modalid :=  (print "modal-" $id) -}}
-  <div class="container">
-      <div class="gallery">
-        <div class="columns is-multiline">
-        {{- range $index, $img := .Page.Resources.Match $matchstr -}}
-        {{- $scaled := $img.Fill "100x80" }}
-        <div class="column is-one-fifth">
-            <a href="{{ $img }}" >
-                <img src="{{ $scaled }}" alt="{{ partial "image-alt.html" (dict "Page" $.Page "Alt" (printf "%s %d" $.Page.Title (add $index 1))) }}" class="has-rounded"/>
-            </a>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-  </div>
+{{- $images := .Page.Resources.Match $matchstr -}}
+{{- if $images -}}
+<div class="article-gallery gallery {{ .Get "class" }}" id="{{ $id }}">
+  {{- range $index, $img := $images -}}
+    {{- $thumb := $img.Fill "360x240 Center" -}}
+    {{- $alt := partial "image-alt.html" (dict "Page" $.Page "Alt" (printf "%s %d" $.Page.Title (add $index 1))) -}}
+    <a class="article-gallery-item" href="{{ $img.RelPermalink }}" data-pswp-width="{{ $img.Width }}" data-pswp-height="{{ $img.Height }}" aria-label="{{ $alt }}">
+      <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    </a>
+  {{- end -}}
 </div>
+{{- end -}}

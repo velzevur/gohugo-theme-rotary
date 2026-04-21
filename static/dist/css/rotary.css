@@ -11402,6 +11402,49 @@ h6 {
   flex-basis: 100%;
 }
 
+.article-gallery {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  margin: 1.5rem 0;
+}
+
+.article-gallery-item {
+  aspect-ratio: 3/2;
+  border-radius: 5px;
+  box-shadow: 0 8px 18px rgba(38, 59, 76, 0.12);
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.article-gallery-item::after {
+  background: linear-gradient(180deg, rgba(12, 60, 124, 0), rgba(12, 60, 124, 0.28));
+  content: "";
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 180ms ease;
+}
+
+.article-gallery-item:hover::after,
+.article-gallery-item:focus-visible::after {
+  opacity: 1;
+}
+
+.article-gallery-item img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease;
+  width: 100%;
+}
+
+.article-gallery-item:hover img,
+.article-gallery-item:focus-visible img {
+  transform: scale(1.04);
+}
+
 .article-layout {
   align-items: flex-start;
 }
