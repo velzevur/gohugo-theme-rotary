@@ -1,5 +1,8 @@
 {{ define "main" }}
  <section class="section">
+    <script src="/dist/js/photoswipe.umd.min.js"></script>
+    <script src="/dist/js/photoswipe-lightbox.umd.min.js"></script>
+
     <div class="container is-small">
       <div class="columns">
         <div class="column is-two-thirds">
@@ -59,5 +62,19 @@
         </div>
       </div>
     </div>
+
+    
+    <script type="text/javascript">
+      var lightbox = new PhotoSwipeLightbox({
+        gallery: '.gallery',
+        children: 'a',
+        // dynamic import is not supported in UMD version
+        pswpModule: PhotoSwipe,
+        initialZoomLevel: 'fill'
+      });
+      lightbox.init();
+    </script>
+
+
   </section>
 {{ end }}

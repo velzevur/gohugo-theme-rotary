@@ -39,6 +39,7 @@ $link-hover: $primary;
 
 @import "./node_modules/bulma/bulma.sass";
 @import "./node_modules/bulma-carousel/src/sass/index.sass";
+@import "./photoswipe";
 
 .has-rounded-top {
   border-top-right-radius: $border-radius;
@@ -224,4 +225,12 @@ span.spacer {
 
 .is-clickable {
   cursor: pointer;
+}
+
+.pswp img {
+    max-width: none;
+    object-fit: contain;
+}
+.pswp__img--placeholder--blank{
+    display: none !important;
 }
