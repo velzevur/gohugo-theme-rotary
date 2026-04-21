@@ -24,7 +24,7 @@
                 {{ range where (where .Site.Pages "Section" "news") ".Params.project" "==" $project}}
                   <div class="columns">
                     <div class="column is-one-third">
-                      <span class="is-size-7">{{ dateFormat "2006-01-02" .Params.Date }}</span>
+                      <span class="is-size-7">{{ partial "i18n-date.html" .Date }}</span>
                     </div>
                     <div class="column is-two-thirds">
                       <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>

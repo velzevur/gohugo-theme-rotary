@@ -66,3 +66,42 @@ other = "Nachrichtenseite"
 
 [project]
 other = "Projekt"
+
+[dateFormatLong]
+other = "{{ .Day }}. {{ .Month }} {{ .Year }}"
+
+[month1]
+other = "Januar"
+
+[month2]
+other = "Februar"
+
+[month3]
+other = "März"
+
+[month4]
+other = "April"
+
+[month5]
+other = "Mai"
+
+[month6]
+other = "Juni"
+
+[month7]
+other = "Juli"
+
+[month8]
+other = "August"
+
+[month9]
+other = "September"
+
+[month10]
+other = "Oktober"
+
+[month11]
+other = "November"
+
+[month12]
+other = "Dezember"

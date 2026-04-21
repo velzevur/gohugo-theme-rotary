@@ -19,7 +19,7 @@
           <img src="{{$link}}{{$image}}">
           {{ end }}
           <div class="content-panel-body">
-          <p class="article-date">{{ dateFormat "2006-01-02" .Params.Date}}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
+          <p class="article-date">{{ partial "i18n-date.html" .Date }}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
           <div class="content">
             {{ .Content }}
           </div>
@@ -53,7 +53,7 @@
                 {{ range . }}
                 <div class="columns">
                   <div class="column is-one-third">
-                    <span class="is-size-7">{{ dateFormat "2006-01-02" .Params.Date }}</span>
+                    <span class="is-size-7">{{ partial "i18n-date.html" .Date }}</span>
                   </div>
                   <div class="column is-two-thirds">
                     <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>

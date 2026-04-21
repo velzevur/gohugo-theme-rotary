@@ -70,3 +70,42 @@ other = "Project"
 [partners]
 other = "Partners"
 
+[dateFormatLong]
+other = "{{ .Month }} {{ .Day }}, {{ .Year }}"
+
+[month1]
+other = "January"
+
+[month2]
+other = "February"
+
+[month3]
+other = "March"
+
+[month4]
+other = "April"
+
+[month5]
+other = "May"
+
+[month6]
+other = "June"
+
+[month7]
+other = "July"
+
+[month8]
+other = "August"
+
+[month9]
+other = "September"
+
+[month10]
+other = "October"
+
+[month11]
+other = "November"
+
+[month12]
+other = "December"
+

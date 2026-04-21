@@ -70,3 +70,42 @@ other = "Проект"
 [partners]
 other = "Партньори"
 
+[dateFormatLong]
+other = "{{ .Day }} {{ .Month }}, {{ .Year }}"
+
+[month1]
+other = "януари"
+
+[month2]
+other = "февруари"
+
+[month3]
+other = "март"
+
+[month4]
+other = "април"
+
+[month5]
+other = "май"
+
+[month6]
+other = "юни"
+
+[month7]
+other = "юли"
+
+[month8]
+other = "август"
+
+[month9]
+other = "септември"
+
+[month10]
+other = "октомври"
+
+[month11]
+other = "ноември"
+
+[month12]
+other = "декември"
+

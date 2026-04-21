@@ -24,7 +24,7 @@
 
     <div class="content">
       <p>{{ .Summary }} (<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</p>
-      <time datetime="2016-1-1">{{ .PublishDate.Format "January 2, 2006" }}</time>
+      <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ partial "i18n-date.html" .PublishDate }}</time>
     </div>
   </div>
 </div>

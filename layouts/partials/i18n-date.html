@@ -1,0 +1,3 @@
+{{- $date := . -}}
+{{- $monthKey := printf "month%d" (int $date.Month) -}}
+{{- i18n "dateFormatLong" (dict "Day" $date.Day "Month" (i18n $monthKey) "Year" $date.Year) -}}

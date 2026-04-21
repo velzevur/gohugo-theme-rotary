@@ -66,3 +66,42 @@ other = "Nyhetssida"
 
 [project]
 other = "TODO"
+
+[dateFormatLong]
+other = "{{ .Day }} {{ .Month }} {{ .Year }}"
+
+[month1]
+other = "januari"
+
+[month2]
+other = "februari"
+
+[month3]
+other = "mars"
+
+[month4]
+other = "april"
+
+[month5]
+other = "maj"
+
+[month6]
+other = "juni"
+
+[month7]
+other = "juli"
+
+[month8]
+other = "augusti"
+
+[month9]
+other = "september"
+
+[month10]
+other = "oktober"
+
+[month11]
+other = "november"
+
+[month12]
+other = "december"
