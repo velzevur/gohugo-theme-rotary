@@ -34,12 +34,23 @@
 {{- $graph := slice $organization $meetingPlace $website -}}
 {{- if $page.IsPage -}}
   {{- if eq $page.Section "news" -}}
-    {{- $article := dict "@type" "Article" "@id" (printf "%s#article" $page.Permalink) "mainEntityOfPage" $page.Permalink "headline" $page.Title "description" $description "url" $page.Permalink "datePublished" ($page.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" ($page.Lastmod.Format "2006-01-02T15:04:05Z07:00") "publisher" (dict "@id" $orgID) "author" (dict "@id" $orgID) -}}
+    {{- $article := dict "@type" "NewsArticle" "@id" (printf "%s#article" $page.Permalink) "mainEntityOfPage" $page.Permalink "headline" $page.Title "description" $description "url" $page.Permalink "datePublished" ($page.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" ($page.Lastmod.Format "2006-01-02T15:04:05Z07:00") "publisher" (dict "@id" $orgID) "author" (dict "@id" $orgID) "articleSection" (i18n "news") "inLanguage" $page.Language.LanguageCode "wordCount" $page.WordCount -}}
     {{- with $image -}}
       {{- $article = merge $article (dict "image" .) -}}
     {{- end -}}
+    {{- $keywords := slice -}}
     {{- with $page.Params.tags -}}
-      {{- $article = merge $article (dict "keywords" .) -}}
+      {{- if reflect.IsSlice . -}}
+        {{- $keywords = . -}}
+      {{- else -}}
+        {{- $keywords = $keywords | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- with $page.Params.project -}}
+      {{- $keywords = $keywords | append . -}}
+    {{- end -}}
+    {{- if gt (len $keywords) 0 -}}
+      {{- $article = merge $article (dict "keywords" (delimit $keywords ", ")) -}}
     {{- end -}}
     {{- $graph = $graph | append $article -}}
   {{- else -}}

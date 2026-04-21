@@ -16,6 +16,12 @@ other = "Was ist in dieser {{ .Type }}"
 [related]
 other = "Ähnliches"
 
+[publishedBy]
+other = "Veröffentlicht von"
+
+[updatedOn]
+other = "Aktualisiert am"
+
 [yourName]
 other = "Dein Name"
 

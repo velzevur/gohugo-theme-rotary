@@ -16,6 +16,12 @@ other = "Innehåll i {{ .Type }}"
 [related]
 other = "Relaterad"
 
+[publishedBy]
+other = "Publicerad av"
+
+[updatedOn]
+other = "Uppdaterad den"
+
 [yourName]
 other = "Ditt namn"
 

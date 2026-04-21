@@ -19,23 +19,59 @@
           <img src="{{$link}}{{$image}}" alt="{{ partial "image-alt.html" (dict "Page" $) }}">
           {{ end }}
           <div class="content-panel-body">
-          <p class="article-date">{{ partial "i18n-date.html" .Date }}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
+          <p class="article-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "i18n-date.html" .Date }}</time>
+            {{ with .Params.Where }}<span>{{ . }}</span>{{ end }}
+          </p>
           <div class="content">
             {{ .Content }}
           </div>
+          <p class="article-meta">
+            <span>{{ i18n "publishedBy" }} {{ .Site.Title }}</span>
+            {{ with .Params.lastmod }}
+              {{ $updated := time . }}
+              <span class="article-meta-line">{{ i18n "updatedOn" }} <time datetime="{{ $updated.Format "2006-01-02" }}">{{ partial "i18n-date.html" $updated }}</time></span>
+            {{ end }}
+          </p>
           </div>
           </div>
         </div>
         <div class="column article-sidebar">
           {{ $project := .Params.project }}
+          {{ $projectPages := slice }}
           {{ if $project }}
-          {{ $projectPages := partial "project-matches.html" (dict "Site" .Site "Project" $project) }}
+          {{ $projectPages = partial "project-matches.html" (dict "Site" .Site "Project" $project) }}
           {{ if $projectPages }}
           <div class="contacts">
             {{ range $projectPages }}
             <p class="is-size-7">{{ i18n "project" }}</p>
             <p class="title is-4 has-blue-text"><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></p>
               <p>{{ .Summary }}(<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</p>
+            {{ end }}
+          </div>
+          {{ end }}
+          {{ $projectNews := slice }}
+          {{ range where .Site.RegularPages "Section" "news" }}
+            {{ $newsPage := . }}
+            {{ $newsProject := lower (.Params.project | default "") }}
+            {{ range $projectPages }}
+              {{ if and . (eq (lower .Title) $newsProject) (ne $newsPage.RelPermalink $.RelPermalink) }}
+                {{ $projectNews = $projectNews | append $newsPage }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if $projectNews }}
+          <div class="content related-list">
+            <p class="is-size-4">{{ i18n "news" }}</p>
+            {{ range first 5 ($projectNews.ByDate.Reverse) }}
+            <div class="columns">
+              <div class="column is-one-third">
+                <span class="is-size-7">{{ partial "i18n-date.html" .Date }}</span>
+              </div>
+              <div class="column is-two-thirds">
+                <a href="{{ .Permalink | relURL }}">{{ .Title }}</a>
+              </div>
+            </div>
             {{ end }}
           </div>
           {{ end }}

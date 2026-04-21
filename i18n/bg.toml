@@ -19,6 +19,12 @@ other = "Вход"
 [related]
 other = "Подобни"
 
+[publishedBy]
+other = "Публикувано от"
+
+[updatedOn]
+other = "Обновено на"
+
 [yourName]
 other = "Вашето име"
 

@@ -16,6 +16,12 @@ other = "What's in this {{ .Type }}"
 [related]
 other = "Related"
 
+[publishedBy]
+other = "Published by"
+
+[updatedOn]
+other = "Updated on"
+
 [login]
 other = "Log in"
 
