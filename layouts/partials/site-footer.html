@@ -10,7 +10,7 @@
                 <p><a href="https://rotary.org" class="has-text-weight-bold has-text-primary">Rotary international</a></p>
                 </div>
                 <div class="column is-one-third">
-                {{ if .Site.IsMultiLingual }}
+                {{ if hugo.IsMultilingual }}
                 <p class="is-uppercase">Other languages</p>
                 {{ $Subpath := .Site.Params.Site.Subpath }}
                 {{ range .Site.Languages }}
