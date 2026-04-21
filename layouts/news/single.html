@@ -6,23 +6,27 @@
     <div class="container is-small">
       <div class="columns">
         <div class="column is-two-thirds">
-          <h3 class="is-size-3 has-text-centered">{{ .Title }}</h3>
+          <h3 class="is-size-3 page-title">{{ .Title }}</h3>
           {{ with .Params.Subtitle }}<h5 class="is-size-5 has-text-centered">{{ . }}</h5>{{ end }}
         </div>
       </div>
-      <div class="columns">
+      <div class="columns article-layout">
         <div class="column is-two-thirds">
+          <div class="content-panel">
           {{ $link := .Permalink }}
           {{ with .Params.image }}
           {{ $image := . }}
-          <img class="has-rounded-top" src="{{$link}}{{$image}}">
+          <img src="{{$link}}{{$image}}">
           {{ end }}
-          <p class="is-size-7">{{ dateFormat "2006-01-02" .Params.Date}}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
+          <div class="content-panel-body">
+          <p class="article-date">{{ dateFormat "2006-01-02" .Params.Date}}{{ with .Params.Where }}, {{ . }} {{ end }}</p>
           <div class="content">
             {{ .Content }}
           </div>
+          </div>
+          </div>
         </div>
-        <div class="column">
+        <div class="column article-sidebar">
           {{ $project := .Params.project }}
           {{ if $project }}
           <div class="contacts">
@@ -41,7 +45,7 @@
             {{ end }}
           </div>
           {{ end }}
-          <div class="content">
+          <div class="content related-list">
             {{ $related := .Site.RegularPages.Related . | first 7 }}
             {{ if $related }}
               <p class="is-size-4">{{ i18n "related" }}</p>

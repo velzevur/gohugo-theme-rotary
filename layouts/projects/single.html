@@ -3,19 +3,21 @@
     <div class="container is-small">
       <div class="columns">
         <div class="column is-two-thirds">
-          <h3 class="is-size-3 has-text-centered">{{ .Title }}</h3>
+          <h3 class="is-size-3 page-title">{{ .Title }}</h3>
         </div>
       </div>
-      <div class="columns">
+      <div class="columns article-layout">
         <div class="column is-two-thirds">
-          <img src="{{ print .Permalink .Params.Cover_image }}">
-          <div class="content">
-            <p>{{ .Content }}</p>
+          <div class="content-panel">
+            <img src="{{ partial "page-resource-url.html" (dict "Page" . "Path" .Params.cover_image) }}" alt="{{ .Title }}">
+            <div class="content content-panel-body">
+              <p>{{ .Content }}</p>
+            </div>
           </div>
         </div>
-        <div class="column is-one-third">
+        <div class="column is-one-third article-sidebar">
           <div>
-            <div class="content">
+            <div class="content related-list">
                 {{ $project := .Params.Title }}
                 {{ if $project }}
                 <p class="title is-4 has-blue-text">{{ i18n "news" }}</p>

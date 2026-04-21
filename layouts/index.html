@@ -7,7 +7,7 @@
       <div class="item-{{ add $index 1 }}">
         <div class="featured-container">
           <a href="{{ $element.Permalink | relURL }}" title="{{ $element.Title }}">
-            <img src="{{ print .Permalink $element.Params.cover_image}}">
+            <img src="{{ partial "page-resource-url.html" (dict "Page" $element "Path" $element.Params.cover_image) }}">
             <span class="featured-caption is-pulled-left">
               <span class='spacer'></span>
               {{ $element.Title }}
@@ -25,15 +25,21 @@
     <div class="container is-small">
       <div class="columns">
         <div class="column is-two-thirds">
-          <h3 class="is-size-3 has-text-centered">{{ .Site.Title }}</h3>
+          <div class="section-heading">
+            <h3 class="is-size-3">{{ .Site.Title }}</h3>
+          </div>
         </div>
       </div>
       <div class="columns">
         <div class="column is-two-thirds">
-          <img class="has-rounded-top" src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg">
-          {{ with .Site.GetPage "/about/history" }}
-          <p>{{ .Summary }}</p>
-          {{ end }}
+          <div class="home-intro">
+            <img src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg">
+            <div class="home-intro-copy">
+              {{ with .Site.GetPage "/about/history" }}
+              <p>{{ .Summary }}</p>
+              {{ end }}
+            </div>
+          </div>
         </div>
         <div class="column is-one-third">
           <h3 class="is-size-3 has-text-centered"></h3>
@@ -54,7 +60,9 @@
   {{ if gt (len $newsPages) 0 }}
   <section class="section">
     <div class="container is-small">
-      <h3 class="is-size-3">{{ i18n "news" }}</h3>
+      <div class="section-heading">
+        <h3 class="is-size-3">{{ i18n "news" }}</h3>
+      </div>
       <div class="columns is-multiline">
       {{ range $firstNewsPage }}
 

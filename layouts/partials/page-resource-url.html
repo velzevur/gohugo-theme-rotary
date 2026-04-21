@@ -1,0 +1,10 @@
+{{- $page := .Page -}}
+{{- $path := .Path -}}
+{{- with $path -}}
+  {{- $cleanPath := replaceRE "^\\./" "" . -}}
+  {{- with $page.Resources.GetMatch $cleanPath -}}
+    {{- .RelPermalink -}}
+  {{- else -}}
+    {{- printf "/%s%s" $page.File.Dir $cleanPath | relURL -}}
+  {{- end -}}
+{{- end -}}
