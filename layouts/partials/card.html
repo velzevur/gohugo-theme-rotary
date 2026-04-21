@@ -12,6 +12,7 @@
         <img class="has-rounded-top" src="{{ $scaled.RelPermalink }}" alt="{{ partial "image-alt.html" (dict "Page" $card) }}">
         {{ end }}
       </a>
+      <time class="card-date-pill" datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ partial "i18n-date.html" .PublishDate }}</time>
     </figure>
   </div>
   <div class="card-content">
@@ -23,8 +24,7 @@
     </div>
 
     <div class="content">
-      <p>{{ .Summary }} (<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</p>
-      <time datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ partial "i18n-date.html" .PublishDate }}</time>
+      <p>{{ .Summary | plainify | strings.TrimSpace }} <span class="read-more-inline">(<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</span></p>
     </div>
   </div>
 </div>

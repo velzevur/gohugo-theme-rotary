@@ -11314,6 +11314,8 @@ h6 {
   border: 1px solid rgba(38, 59, 76, 0.12);
   border-radius: 5px;
   box-shadow: 0 12px 30px rgba(38, 59, 76, 0.1);
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow: hidden;
   transition: box-shadow 180ms ease, transform 180ms ease;
@@ -11329,11 +11331,44 @@ h6 {
   transition: transform 240ms ease;
 }
 
+.card-image figure {
+  overflow: hidden;
+  position: relative;
+}
+
 .card:hover .card-image img {
   transform: scale(1.035);
 }
 
+.card-date-pill {
+  align-items: center;
+  background: rgba(12, 60, 124, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+  bottom: 0.85rem;
+  box-shadow: 0 10px 24px rgba(38, 59, 76, 0.2);
+  color: white;
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 800;
+  left: 0.85rem;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  max-width: calc(100% - 1.7rem);
+  padding: 0.5rem 0.7rem;
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.read-more-inline {
+  white-space: nowrap;
+}
+
 .card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 1.25rem;
 }
 
@@ -11344,10 +11379,12 @@ h6 {
 
 .card .content {
   color: rgba(38, 59, 76, 0.82);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   font-size: 0.96rem;
 }
 
-.card time,
 .article-date,
 .article-meta {
   color: #5E717D;
