@@ -40,6 +40,9 @@ other = "andere Seiten"
 [rotary]
 other = "Rotary"
 
+[about]
+other = "Über uns"
+
 [meetingInfo]
 other = "Unsere Treffen"
 

@@ -3,12 +3,7 @@
 {{- range slice "/about/history" "/about/contact" "/projects" "/news" -}}
   {{- with $page.Site.GetPage . -}}
     {{- if ne .RelPermalink $page.RelPermalink -}}
-      {{- $label := .Title | default (humanize .Section) -}}
-      {{- if eq .Section "projects" -}}
-        {{- $label = i18n "projects" -}}
-      {{- else if eq .Section "news" -}}
-        {{- $label = i18n "news" -}}
-      {{- end -}}
+      {{- $label := partial "page-link-label.html" . -}}
       {{- $links = $links | append (dict "URL" .RelPermalink "Title" $label) -}}
     {{- end -}}
   {{- end -}}

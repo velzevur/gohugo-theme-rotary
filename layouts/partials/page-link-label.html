@@ -1,0 +1,13 @@
+{{- $page := . -}}
+{{- $label := $page.Title | default (humanize $page.Section) -}}
+{{- $section := $page.Section | default $page.Type -}}
+{{- if eq $section "about" -}}
+  {{- $label = i18n "about" -}}
+{{- else if eq $section "projects" -}}
+  {{- $label = i18n "projects" -}}
+{{- else if eq $section "news" -}}
+  {{- $label = i18n "news" -}}
+{{- else if eq $section "rotary" -}}
+  {{- $label = i18n "rotary" -}}
+{{- end -}}
+{{- return $label -}}

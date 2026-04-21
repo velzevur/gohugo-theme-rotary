@@ -40,6 +40,9 @@ other = "andra webbplatser"
 [rotary]
 other = "Rotary"
 
+[about]
+other = "Om oss"
+
 [meetingInfo]
 other = "Mötesinfo"
 
@@ -65,7 +68,7 @@ other = "<<"
 other = "Nyhetssida"
 
 [project]
-other = "TODO"
+other = "Projekt"
 
 [projects]
 other = "Projekt"

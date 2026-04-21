@@ -76,11 +76,15 @@
   {{- $position := 2 -}}
   {{- range $page.Ancestors.Reverse -}}
     {{- if not .IsHome -}}
-      {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" (partial "page-link-label.html" .) "item" .Permalink) -}}
       {{- $position = add $position 1 -}}
     {{- end -}}
   {{- end -}}
-  {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" $page.Title "item" $page.Permalink) -}}
+  {{- $currentLabel := $page.Title -}}
+  {{- if not $page.IsPage -}}
+    {{- $currentLabel = partial "page-link-label.html" $page -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" $position "name" $currentLabel "item" $page.Permalink) -}}
   {{- $graph = $graph | append (dict "@type" "BreadcrumbList" "itemListElement" $items) -}}
 {{- end -}}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

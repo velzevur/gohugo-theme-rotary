@@ -40,6 +40,9 @@ other = "Other sites"
 [rotary]
 other = "Rotary"
 
+[about]
+other = "About"
+
 [meetingInfo]
 other = "Meeting info"
 
