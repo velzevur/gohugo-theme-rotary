@@ -67,8 +67,17 @@ other = "News page"
 [project]
 other = "Project"
 
+[projects]
+other = "Projects"
+
 [partners]
 other = "Partners"
+
+[topics]
+other = "Topics"
+
+[exploreMore]
+other = "Explore more"
 
 [dateFormatLong]
 other = "{{ .Month }} {{ .Day }}, {{ .Year }}"

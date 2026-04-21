@@ -67,8 +67,17 @@ other = "Страница с новини"
 [project]
 other = "Проект"
 
+[projects]
+other = "Проекти"
+
 [partners]
 other = "Партньори"
+
+[topics]
+other = "Теми"
+
+[exploreMore]
+other = "Още от сайта"
 
 [dateFormatLong]
 other = "{{ .Day }} {{ .Month }}, {{ .Year }}"

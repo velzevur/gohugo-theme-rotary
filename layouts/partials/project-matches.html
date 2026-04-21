@@ -1,0 +1,22 @@
+{{- $site := .Site -}}
+{{- $key := .Project | default "" -}}
+{{- $matches := slice -}}
+{{- if $key -}}
+  {{- $normalizedKey := lower $key -}}
+  {{- range where $site.RegularPages "Section" "projects" -}}
+    {{- $projectPage := . -}}
+    {{- $aliases := slice .Title .Params.project -}}
+    {{- with .Params.aliases -}}
+      {{- $aliases = $aliases | append . -}}
+    {{- end -}}
+    {{- with .Params.project_aliases -}}
+      {{- $aliases = $aliases | append . -}}
+    {{- end -}}
+    {{- range $aliases -}}
+      {{- if eq (lower .) $normalizedKey -}}
+        {{- $matches = $matches | append $projectPage -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $matches -}}

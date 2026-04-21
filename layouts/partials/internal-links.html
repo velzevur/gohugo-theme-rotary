@@ -1,0 +1,25 @@
+{{- $page := . -}}
+{{- $links := slice -}}
+{{- range slice "/about/history" "/about/contact" "/projects" "/news" -}}
+  {{- with $page.Site.GetPage . -}}
+    {{- if ne .RelPermalink $page.RelPermalink -}}
+      {{- $label := .Title | default (humanize .Section) -}}
+      {{- if eq .Section "projects" -}}
+        {{- $label = i18n "projects" -}}
+      {{- else if eq .Section "news" -}}
+        {{- $label = i18n "news" -}}
+      {{- end -}}
+      {{- $links = $links | append (dict "URL" .RelPermalink "Title" $label) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if gt (len $links) 0 -}}
+<div class="content related-list">
+  <p class="is-size-4">{{ i18n "exploreMore" }}</p>
+  {{- range $links }}
+  <div>
+    <a href="{{ .URL }}">{{ .Title }}</a>
+  </div>
+  {{- end }}
+</div>
+{{- end -}}

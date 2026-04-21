@@ -67,6 +67,15 @@ other = "Nyhetssida"
 [project]
 other = "TODO"
 
+[projects]
+other = "Projekt"
+
+[topics]
+other = "Ämnen"
+
+[exploreMore]
+other = "Utforska mer"
+
 [dateFormatLong]
 other = "{{ .Day }} {{ .Month }} {{ .Year }}"
 

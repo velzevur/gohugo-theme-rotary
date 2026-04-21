@@ -19,10 +19,6 @@
   {{- end -}}
 {{- end -}}
 {{- if not $url -}}
-  {{- with resources.Get "images/logo.png" -}}
-    {{- $url = .Permalink -}}
-  {{- else -}}
-    {{- $url = "/images/logo.png" | absURL -}}
-  {{- end -}}
+  {{- $url = "/images/social-preview.png" | absURL -}}
 {{- end -}}
 {{- return $url -}}

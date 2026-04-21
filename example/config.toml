@@ -51,6 +51,7 @@ theme = "gohugo-theme-rotary"
       url = "/en/news/"
       weight = -50
     [languages.en.params]
+      description = "Rotary Club Sofia Triaditsa brings together friends and professionals in Sofia to serve sustainable causes in healthcare, education and the community."
       [languages.en.params.club]
         name ="Sofia Triaditsa"
         country ="Bulgaria"
@@ -66,6 +67,7 @@ theme = "gohugo-theme-rotary"
     weight = 3
     LanguageName = "Deutsch"
     [languages.de.params]
+      description = "Rotary Club Sofia Triaditsa vereint Freunde und Fachleute in Sofia, die nachhaltige Projekte in Gesundheit, Bildung und Gemeinschaft unterstützen."
       [languages.de.params.club]
         name ="Sofia Triaditsa"
         country ="Bulgaria"
@@ -91,6 +93,7 @@ theme = "gohugo-theme-rotary"
         url = "/sv"
         weight = -110
     [languages.sv.params]
+      description = "Rotary Club Sofia Triaditsa samlar vänner och yrkespersoner i Sofia för hållbara insatser inom hälsa, utbildning och samhälle."
       [languages.sv.params.club]
         name ="Sofia Triaditsa"
         country ="Bulgaria"
@@ -107,6 +110,7 @@ theme = "gohugo-theme-rotary"
 title = "Rotary club Sofia Triaditsa"
 
 [params]
+  description = "Ротари клуб София Триадица обединява приятели и професионалисти в София, които работят по устойчиви каузи в здравеопазването, образованието и общността."
   facebook = "https://www.facebook.com/Rotary-Club-of-Sofia-Triaditsa-%D0%A0%D0%BE%D1%82%D0%B0%D1%80%D0%B8-%D0%BA%D0%BB%D1%83%D0%B1-%D0%A1%D0%BE%D1%84%D0%B8%D1%8F-%D0%A2%D1%80%D0%B8%D0%B0%D0%B4%D0%B8%D1%86%D0%B0-1922306497989773"
   clubName = "Club of Sofia Triaditsa"
   [params.tracking]

@@ -18,10 +18,22 @@
         <div class="column is-one-third article-sidebar">
           <div>
             <div class="content related-list">
-                {{ $project := .Params.Title }}
-                {{ if $project }}
+                {{ $aliases := slice .Title .Params.project }}
+                {{ with .Params.aliases }}{{ $aliases = $aliases | append . }}{{ end }}
+                {{ with .Params.project_aliases }}{{ $aliases = $aliases | append . }}{{ end }}
+                {{ $news := slice }}
+                {{ range where .Site.RegularPages "Section" "news" }}
+                  {{ $newsPage := . }}
+                  {{ $newsProject := lower (.Params.project | default "") }}
+                  {{ range $aliases }}
+                    {{ if and . (eq (lower .) $newsProject) }}
+                      {{ $news = $news | append $newsPage }}
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+                {{ if $news }}
                 <p class="title is-4 has-blue-text">{{ i18n "news" }}</p>
-                {{ range where (where .Site.Pages "Section" "news") ".Params.project" "==" $project}}
+                {{ range first 10 ($news.ByDate.Reverse) }}
                   <div class="columns">
                     <div class="column is-one-third">
                       <span class="is-size-7">{{ partial "i18n-date.html" .Date }}</span>
@@ -33,6 +45,7 @@
                 {{ end }}
                 {{ end }}
             </div>
+            {{ partial "internal-links.html" . }}
           </div>
         </div>
       </div>
