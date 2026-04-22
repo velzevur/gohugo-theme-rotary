@@ -11423,6 +11423,16 @@ h6 {
   flex-basis: 100%;
 }
 
+.article-lede-meta {
+  margin-bottom: 1.4rem;
+}
+
+.article-publish-meta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .article-gallery {
   display: grid;
   gap: 0.75rem;

@@ -19,14 +19,14 @@
           <img src="{{$link}}{{$image}}" alt="{{ partial "image-alt.html" (dict "Page" $) }}">
           {{ end }}
           <div class="content-panel-body">
-          <p class="article-meta">
+          <p class="article-meta article-lede-meta">
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "i18n-date.html" .Date }}</time>
             {{ with .Params.Where }}<span>{{ . }}</span>{{ end }}
           </p>
           <div class="content">
             {{ .Content }}
           </div>
-          <p class="article-meta">
+          <p class="article-meta article-publish-meta">
             <span>{{ i18n "publishedBy" }} {{ .Site.Title }}</span>
             {{ with .Params.lastmod }}
               {{ $updated := time . }}
