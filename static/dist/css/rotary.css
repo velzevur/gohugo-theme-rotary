@@ -11385,6 +11385,27 @@ h6 {
   font-size: 0.96rem;
 }
 
+.project-card-button,
+.card-read-more-button {
+  align-self: flex-start;
+  background: white;
+  border-color: rgba(38, 59, 76, 0.12);
+  color: #0C3C7C;
+  font-size: 0.82rem;
+  height: auto;
+  line-height: 1.2;
+  margin-top: auto;
+  padding: 0.45rem 0.7rem;
+}
+
+.project-card-button:hover,
+.project-card-button:focus,
+.card-read-more-button:hover,
+.card-read-more-button:focus {
+  border-color: #019FCB;
+  color: #019FCB;
+}
+
 .article-date,
 .article-meta {
   color: #5E717D;

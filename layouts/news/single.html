@@ -46,7 +46,7 @@
             {{ range $projectPages }}
             <p class="is-size-7">{{ i18n "project" }}</p>
             <p class="title is-4 has-blue-text"><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></p>
-              <p>{{ .Summary }}(<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</p>
+              <p>{{ .Summary | plainify | strings.TrimSpace }} <span class="read-more-inline">(<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</span></p>
             {{ end }}
           </div>
           {{ end }}

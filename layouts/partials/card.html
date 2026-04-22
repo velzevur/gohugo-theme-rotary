@@ -24,7 +24,8 @@
     </div>
 
     <div class="content">
-      <p>{{ .Summary | plainify | strings.TrimSpace }} <span class="read-more-inline">(<a href="{{ .Permalink | relURL }}">{{ i18n "more" }}...</a>)</span></p>
+      <p>{{ .Summary | plainify | strings.TrimSpace }}</p>
     </div>
+    <a class="button card-read-more-button" href="{{ .Permalink | relURL }}">{{ i18n "more" }}</a>
   </div>
 </div>
