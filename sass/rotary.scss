@@ -1,17 +1,5 @@
 @charset "utf-8";
 
-@font-face {
-  font-family: rotaryFont;
-  font-weight: 100;
-  src: url(/fonts/OpenSans-VariableFont_wdth_wght.ttf);
-}
-
-@font-face {
-  font-family: rotaryFontBold;
-  font-weight: 700;
-  src: url(/fonts/OpenSans-VariableFont_wdth_wght.ttf);
-}
-
 // Set Rotary colors
 $sky-blue: #019FCB;
 $royal-blue: #0C3C7C;
@@ -39,7 +27,7 @@ $grey-light: $gray-lighter;
 $primary: $royal-blue;
 $link: $primary;
 $link-hover: $primary;
-$body-family: rotaryFont, "Open Sans", Arial, sans-serif;
+$body-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 $body-color: $steel-blue;
 $text: $steel-blue;
 $title-color: $steel-blue;
@@ -50,8 +38,6 @@ $navbar-dropdown-boxed-shadow: $shadow-card;
 
 
 @import "./node_modules/bulma/bulma.sass";
-@import "./node_modules/bulma-carousel/src/sass/index.sass";
-@import "./photoswipe";
 
 html {
   scroll-behavior: smooth;
@@ -62,7 +48,7 @@ body {
     linear-gradient(180deg, rgba($sky-blue, 0.08) 0, rgba($gray-lighter, 0.72) 420px, white 760px),
     white;
   color: $steel-blue;
-  font-family: rotaryFont, "Open Sans", Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   line-height: 1.7;
 }
 
@@ -153,7 +139,6 @@ h6 {
     }
     .logo {
         display: inline-block;
-        font-family: rotaryFont;
         background: url("/images/white-logo.png") no-repeat; width: 213px; height: 80px; background-size: cover;  
     }
     .header {
@@ -187,25 +172,27 @@ h6 {
 }
 .logo1 .mark{
     color: $royal-blue;
-    font-family: rotaryFontBold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
     line-height: 95%;
     margin-right: 106px;
 }
 .logo1 .mark-small{
     color: $royal-blue;
-    font-family: rotaryFontBold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
     line-height: 95%;
     margin-right: 62px;
 }
 .logo1 .club-name1{
     color: $royal-blue;
-    font-family: rotaryFont;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     margin-right: 106px;
 }
 
 .logo1 .club-name1-small{
     color: $royal-blue;
-    font-family: rotaryFont;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     margin-right: 62px;
 }
 
@@ -391,7 +378,7 @@ span.spacer {
 .section-heading h3,
 .page-title {
     color: $royal-blue;
-    font-family: rotaryFontBold, rotaryFont, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     font-weight: 800;
     margin-bottom: 0;
 }
@@ -697,14 +684,6 @@ span.spacer {
 
 .is-clickable {
   cursor: pointer;
-}
-
-.pswp img {
-    max-width: none;
-    object-fit: contain;
-}
-.pswp__img--placeholder--blank{
-    display: none !important;
 }
 
 @media screen and (max-width: 1023px) {

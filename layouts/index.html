@@ -84,13 +84,46 @@
   </section>
   {{ end }}
 
-    <script src="/dist/js/bulma-carousel.min.js"></script>
     <script>
-    bulmaCarousel.attach('#carousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      loop: true,
-      autoplay: true
-    });
+    (function () {
+      var carousel = document.getElementById('carousel');
+      if (!carousel) return;
+      var carouselStarted = false;
+
+      function initCarousel() {
+        if (carouselStarted) return;
+        carouselStarted = true;
+        var styles = document.createElement('link');
+        styles.rel = 'stylesheet';
+        styles.href = '/dist/css/bulma-carousel.css';
+        document.head.appendChild(styles);
+
+        var script = document.createElement('script');
+        script.src = '/dist/js/bulma-carousel.min.js';
+        script.async = true;
+        script.onload = function () {
+          bulmaCarousel.attach('#carousel', {
+            slidesToScroll: 1,
+            slidesToShow: 1,
+            loop: true,
+            autoplay: true
+          });
+        };
+        document.body.appendChild(script);
+      }
+
+      function scheduleCarousel() {
+        ['pointerenter', 'touchstart', 'focusin'].forEach(function (eventName) {
+          carousel.addEventListener(eventName, initCarousel, { once: true, passive: true });
+        });
+        setTimeout(initCarousel, 6000);
+      }
+
+      if (document.readyState === 'complete') {
+        scheduleCarousel();
+      } else {
+        window.addEventListener('load', scheduleCarousel, { once: true });
+      }
+    }());
     </script>
 {{ end }}

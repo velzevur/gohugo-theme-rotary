@@ -24,7 +24,9 @@
     <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#0033a0">
 
     {{ hugo.Generator }}
-    <link rel="stylesheet" href="{{ .Site.Params.Site.Subpath }}/dist/css/rotary.css">
+    {{ $subpath := .Site.Params.Site.Subpath | default "" }}
+    {{ $stylesheet := printf "%s/dist/css/rotary.css" $subpath }}
+    <link rel="stylesheet" href="{{ $stylesheet }}">
 
     {{ block "favicon" . }}
       {{ partialCached "site-favicon.html" . }}

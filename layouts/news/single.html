@@ -109,6 +109,11 @@
 
     
     <script type="text/javascript">
+      var photoSwipeStyles = document.createElement('link');
+      photoSwipeStyles.rel = 'stylesheet';
+      photoSwipeStyles.href = '/dist/css/photoswipe.css';
+      document.head.appendChild(photoSwipeStyles);
+
       var lightbox = new PhotoSwipeLightbox({
         gallery: '.gallery',
         children: 'a',
