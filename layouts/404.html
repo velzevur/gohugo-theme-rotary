@@ -1,7 +1,26 @@
+{{ define "seo" }}
+  <title>Page not found | {{ .Site.Title }}</title>
+  <meta name="description" content="The requested page could not be found. Use the main sections to continue browsing {{ .Site.Title }}.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="{{ "404.html" | absURL }}">
+{{ end }}
+
 {{ define "main" }}
-    <article class="center cf pv5 measure-wide-l">
-      <h1>
-        This is not the page you were looking for
-      </h1>
-    </article>
+<section class="section">
+  <div class="container is-small">
+    <div class="summary-card">
+      <p class="section-label">404</p>
+      <h1 class="is-size-3 page-title">Page not found</h1>
+      <div class="content">
+        <p>The page may have moved, or the address may be incorrect.</p>
+        <div class="nested-links">
+          <a href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+          {{ with .Site.GetPage "/news" }}<a href="{{ .RelPermalink }}">{{ i18n "news" }}</a>{{ end }}
+          {{ with .Site.GetPage "/projects" }}<a href="{{ .RelPermalink }}">{{ i18n "projects" }}</a>{{ end }}
+          {{ with .Site.GetPage "/about/contact" }}<a href="{{ .RelPermalink }}">{{ i18n "about" }}</a>{{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {{ end }}

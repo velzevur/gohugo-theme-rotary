@@ -1,3 +1,43 @@
+{{ define "seo" }}
+  {{ $newsPages := (where .Site.RegularPages "Section" "news").ByDate.Reverse }}
+  {{ $paginator := .Paginate $newsPages 9 }}
+  {{ $baseTitle := printf "%s | %s" (i18n "news") .Site.Title }}
+  {{ $pageTitle := $baseTitle }}
+  {{ $description := .Description | default .Params.description | default .Site.Params.description | default .Site.Title | plainify | htmlUnescape | replaceRE "\\s+" " " | strings.TrimSpace | truncate 160 }}
+  {{ if gt $paginator.PageNumber 1 }}
+    {{ $pageTitle = printf "%s - %s %d | %s" (i18n "news") (i18n "newsPage") $paginator.PageNumber .Site.Title }}
+    {{ $description = printf "%s - %s %d. %s" (i18n "news") (i18n "newsPage") $paginator.PageNumber .Site.Title }}
+  {{ end }}
+  {{ $image := partial "seo/image.html" . }}
+  {{ $imageAlt := partial "image-alt.html" (dict "Page" .) }}
+  {{ $isProduction := eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production") }}
+  <title>{{ $pageTitle }}</title>
+  <meta name="description" content="{{ $description }}">
+  <link rel="canonical" href="{{ $paginator.URL | absURL }}">
+  {{ with $paginator.Prev }}<link rel="prev" href="{{ .URL | absURL }}">{{ end }}
+  {{ with $paginator.Next }}<link rel="next" href="{{ .URL | absURL }}">{{ end }}
+  <link rel="sitemap" type="application/xml" href="{{ "sitemap.xml" | absURL }}">
+  {{ range .Translations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">{{ end }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+  {{ with .Site.Home.AllTranslations }}{{ range first 1 . }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">{{ end }}{{ end }}
+  <meta property="og:locale" content="{{ replace .Language.LanguageCode "-" "_" }}">
+  {{ range .Translations }}<meta property="og:locale:alternate" content="{{ replace .Language.LanguageCode "-" "_" }}">{{ end }}
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="{{ $pageTitle }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ $paginator.URL | absURL }}">
+  {{ with $image }}<meta property="og:image" content="{{ . | safeURL }}"><meta property="og:image:alt" content="{{ $imageAlt }}">{{ end }}
+  <meta name="twitter:card" content="{{ if $image }}summary_large_image{{ else }}summary{{ end }}">
+  <meta name="twitter:title" content="{{ $pageTitle }}">
+  <meta name="twitter:description" content="{{ $description }}">
+  <meta name="twitter:url" content="{{ $paginator.URL | absURL }}">
+  <meta name="twitter:domain" content="{{ (urls.Parse .Site.BaseURL).Host | default .Site.BaseURL }}">
+  {{ with $image }}<meta name="twitter:image" content="{{ . | safeURL }}"><meta name="twitter:image:alt" content="{{ $imageAlt }}">{{ end }}
+  {{ if not $isProduction }}<meta name="robots" content="noindex, nofollow">{{ end }}
+  {{ partial "seo/jsonld.html" (dict "Page" . "Description" $description "Image" $image) }}
+{{ end }}
+
 {{ define "main" }}
   {{ $newsPages := (where .Site.RegularPages "Section" "news").ByDate.Reverse }}
   {{ $paginator := .Paginate $newsPages 9 }}

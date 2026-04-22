@@ -9,7 +9,7 @@
         {{- $resources := $card.Resources.Match . -}}
         {{- $img := index ($resources) 0 -}}
         {{- $scaled := $img.Fill "430x324" -}}
-        <img class="has-rounded-top" src="{{ $scaled.RelPermalink }}" alt="{{ partial "image-alt.html" (dict "Page" $card) }}">
+        <img class="has-rounded-top" src="{{ $scaled.RelPermalink }}" alt="{{ partial "image-alt.html" (dict "Page" $card) }}" loading="lazy" decoding="async">
         {{ end }}
       </a>
       <time class="card-date-pill" datetime="{{ .PublishDate.Format "2006-01-02" }}">{{ partial "i18n-date.html" .PublishDate }}</time>
