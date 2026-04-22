@@ -1,0 +1,35 @@
+{{- $page := .Page -}}
+{{- $path := .Path -}}
+{{- $alt := .Alt | default (partial "image-alt.html" (dict "Page" $page)) -}}
+{{- $class := .Class | default "" -}}
+{{- $sizes := .Sizes | default "100vw" -}}
+{{- $loading := .Loading | default "lazy" -}}
+{{- $fetchpriority := .FetchPriority | default "" -}}
+{{- $fit := .Fit | default "1600x900 Center" -}}
+{{- $widths := .Widths | default (slice 640 960 1280 1600) -}}
+{{- $img := "" -}}
+{{- with $path -}}
+  {{- $cleanPath := replaceRE "^\\./" "" . -}}
+  {{- with $page.Resources.GetMatch $cleanPath -}}
+    {{- $img = . -}}
+  {{- end -}}
+{{- end -}}
+{{- if $img -}}
+  {{- $fallback := $img.Fill (printf "%s webp q75" $fit) -}}
+  {{- $srcset := slice -}}
+  {{- range $widths -}}
+    {{- if ge $img.Width . -}}
+      {{- $processed := $img.Resize (printf "%dx webp q75" .) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $processed.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if eq (len $srcset) 0 -}}
+    {{- $processed := $img.Resize "800x webp q75" -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $processed.RelPermalink $processed.Width) -}}
+  {{- end -}}
+  <img{{ with $class }} class="{{ . }}"{{ end }} src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ $sizes }}" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}>
+{{- else -}}
+  {{- with $path -}}
+  <img{{ with $class }} class="{{ . }}"{{ end }} src="{{ partial "page-resource-url.html" (dict "Page" $page "Path" .) }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}>
+  {{- end -}}
+{{- end -}}

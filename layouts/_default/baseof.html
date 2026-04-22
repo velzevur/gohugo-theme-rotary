@@ -26,7 +26,9 @@
     {{ hugo.Generator }}
     {{ $subpath := .Site.Params.Site.Subpath | default "" }}
     {{ $stylesheet := printf "%s/dist/css/rotary.css" $subpath }}
-    <link rel="stylesheet" href="{{ $stylesheet }}">
+    {{ partial "critical-css.html" . }}
+    <link rel="preload" href="{{ $stylesheet }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ $stylesheet }}"></noscript>
 
     {{ block "favicon" . }}
       {{ partialCached "site-favicon.html" . }}

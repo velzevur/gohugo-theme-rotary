@@ -1,13 +1,22 @@
 {{ define "main" }}
   {{ $flist := (where (where .Site.RegularPages  "Section" "projects" ) ".Params.featured" "==" true ) }}
   {{ if (gt (len $flist) 0) }}
-  <div id="carousel" class="carousel">
+  <div class="featured-hero">
 
-    {{ range  $index, $element := $flist }}
+    {{ range  $index, $element := first 1 $flist }}
       <div class="item-{{ add $index 1 }}">
         <div class="featured-container">
           <a href="{{ $element.Permalink | relURL }}" title="{{ $element.Title }}">
-            <img src="{{ partial "page-resource-url.html" (dict "Page" $element "Path" $element.Params.cover_image) }}" alt="{{ partial "image-alt.html" (dict "Page" $element) }}">
+            {{ partial "responsive-page-image.html" (dict
+              "Page" $element
+              "Path" $element.Params.cover_image
+              "Alt" (partial "image-alt.html" (dict "Page" $element))
+              "Sizes" "100vw"
+              "Fit" "1600x720 Center"
+              "Widths" (slice 640 960 1280 1600)
+              "Loading" (cond (eq $index 0) "eager" "lazy")
+              "FetchPriority" (cond (eq $index 0) "high" "")
+            ) }}
             <span class="featured-caption is-pulled-left">
               <span class='spacer'></span>
               {{ $element.Title }}
@@ -33,7 +42,18 @@
       <div class="columns">
         <div class="column is-two-thirds">
           <div class="home-intro">
-            <img src="{{ .Site.Params.Site.Subpath }}/img/club-picture.jpg" alt="{{ .Site.Title }}">
+            {{ partial "responsive-static-image.html" (dict
+              "Site" .Site
+              "Path" "img/club-picture.jpg"
+              "Alt" .Site.Title
+              "Class" "home-intro-image"
+              "Width" 960
+              "Height" 640
+              "Sizes" "(min-width: 769px) 66vw, 100vw"
+              "Fit" "1200x800 Center"
+              "Widths" (slice 480 768 1024 1200)
+              "Loading" "lazy"
+            ) }}
             <div class="home-intro-copy">
               {{ with .Site.GetPage "/about/history" }}
               <p>{{ .Summary }}</p>
@@ -84,46 +104,4 @@
   </section>
   {{ end }}
 
-    <script>
-    (function () {
-      var carousel = document.getElementById('carousel');
-      if (!carousel) return;
-      var carouselStarted = false;
-
-      function initCarousel() {
-        if (carouselStarted) return;
-        carouselStarted = true;
-        var styles = document.createElement('link');
-        styles.rel = 'stylesheet';
-        styles.href = '/dist/css/bulma-carousel.css';
-        document.head.appendChild(styles);
-
-        var script = document.createElement('script');
-        script.src = '/dist/js/bulma-carousel.min.js';
-        script.async = true;
-        script.onload = function () {
-          bulmaCarousel.attach('#carousel', {
-            slidesToScroll: 1,
-            slidesToShow: 1,
-            loop: true,
-            autoplay: true
-          });
-        };
-        document.body.appendChild(script);
-      }
-
-      function scheduleCarousel() {
-        ['pointerenter', 'touchstart', 'focusin'].forEach(function (eventName) {
-          carousel.addEventListener(eventName, initCarousel, { once: true, passive: true });
-        });
-        setTimeout(initCarousel, 6000);
-      }
-
-      if (document.readyState === 'complete') {
-        scheduleCarousel();
-      } else {
-        window.addEventListener('load', scheduleCarousel, { once: true });
-      }
-    }());
-    </script>
 {{ end }}

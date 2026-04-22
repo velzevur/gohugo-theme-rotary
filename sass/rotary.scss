@@ -355,9 +355,11 @@ span.spacer {
 .home-intro img,
 .content-panel > img,
 .content-panel .content > img:first-child {
-    display: block;
-    height: auto;
-    width: 100%;
+  aspect-ratio: 3 / 2;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
 }
 
 .home-intro-copy,

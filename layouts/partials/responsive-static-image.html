@@ -1,0 +1,28 @@
+{{- $path := .Path -}}
+{{- $alt := .Alt | default .Site.Title -}}
+{{- $class := .Class | default "" -}}
+{{- $sizes := .Sizes | default "100vw" -}}
+{{- $loading := .Loading | default "lazy" -}}
+{{- $fetchpriority := .FetchPriority | default "" -}}
+{{- $width := .Width | default "" -}}
+{{- $height := .Height | default "" -}}
+{{- $fit := .Fit | default "1200x800 Center" -}}
+{{- $widths := .Widths | default (slice 480 768 1024 1200) -}}
+{{- $resourcePath := strings.TrimPrefix "/" $path -}}
+{{- with resources.Get $resourcePath -}}
+  {{- $fallback := .Fill (printf "%s webp q75" $fit) -}}
+  {{- $srcset := slice -}}
+  {{- range $widths -}}
+    {{- if ge $.Width . -}}
+      {{- $processed := $.Resize (printf "%dx webp q75" .) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $processed.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if eq (len $srcset) 0 -}}
+    {{- $processed := .Resize "800x webp q75" -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $processed.RelPermalink $processed.Width) -}}
+  {{- end -}}
+  <img{{ with $class }} class="{{ . }}"{{ end }} src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="{{ $sizes }}" width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}>
+{{- else -}}
+  <img{{ with $class }} class="{{ . }}"{{ end }} src="{{ $path }}"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }} alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}>
+{{- end -}}
