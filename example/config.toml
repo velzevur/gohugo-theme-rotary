@@ -163,3 +163,8 @@ title = "Rotary club Sofia Triaditsa"
     name = "Новини"
     url = "/news/"
     weight = -80
+
+  [[menu.main]]
+    name = "Стани член"
+    url = "/about/join"
+    weight = -60
