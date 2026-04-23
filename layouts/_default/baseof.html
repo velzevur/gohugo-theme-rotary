@@ -26,6 +26,7 @@
     {{ hugo.Generator }}
     {{ $subpath := .Site.Params.Site.Subpath | default "" }}
     {{ $stylesheet := printf "%s/dist/css/rotary.css" $subpath }}
+    {{ partial "lcp-preload.html" . }}
     {{ partial "critical-css.html" . }}
     <link rel="preload" href="{{ $stylesheet }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ $stylesheet }}"></noscript>
@@ -71,7 +72,6 @@
     {{ block "scripts" . }}{{ partialCached "site-scripts.html" . }}{{ end }}
   </body>
 
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
 

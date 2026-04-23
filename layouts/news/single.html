@@ -1,8 +1,6 @@
 {{ define "main" }}
+ {{ $hasGallery := gt (len (findRE "class=\"[^\"]*\\bgallery\\b" .Content)) 0 }}
  <section class="section">
-    <script src="/dist/js/photoswipe.umd.min.js"></script>
-    <script src="/dist/js/photoswipe-lightbox.umd.min.js"></script>
-
     <div class="container is-small">
       <div class="columns">
         <div class="column is-two-thirds">
@@ -13,10 +11,17 @@
       <div class="columns article-layout">
         <div class="column is-two-thirds">
           <div class="content-panel">
-          {{ $link := .Permalink }}
           {{ with .Params.image }}
-          {{ $image := . }}
-          <img src="{{$link}}{{$image}}" alt="{{ partial "image-alt.html" (dict "Page" $) }}">
+          {{ partial "responsive-page-image.html" (dict
+            "Page" $
+            "Path" .
+            "Alt" (partial "image-alt.html" (dict "Page" $))
+            "Sizes" "(min-width: 769px) 66vw, 100vw"
+            "Fit" "1440x960 Center"
+            "Widths" (slice 640 960 1280 1440)
+            "Loading" "eager"
+            "FetchPriority" "high"
+          ) }}
           {{ end }}
           <div class="content-panel-body">
           <p class="article-meta article-lede-meta">
@@ -106,24 +111,27 @@
         </div>
       </div>
     </div>
-
-    
+    {{ if $hasGallery }}
+    <script defer src="/dist/js/photoswipe.umd.min.js"></script>
+    <script defer src="/dist/js/photoswipe-lightbox.umd.min.js"></script>
     <script type="text/javascript">
-      var photoSwipeStyles = document.createElement('link');
-      photoSwipeStyles.rel = 'stylesheet';
-      photoSwipeStyles.href = '/dist/css/photoswipe.css';
-      document.head.appendChild(photoSwipeStyles);
+      document.addEventListener('DOMContentLoaded', function () {
+        var photoSwipeStyles = document.createElement('link');
+        photoSwipeStyles.rel = 'stylesheet';
+        photoSwipeStyles.href = '/dist/css/photoswipe.css';
+        document.head.appendChild(photoSwipeStyles);
 
-      var lightbox = new PhotoSwipeLightbox({
-        gallery: '.gallery',
-        children: 'a',
-        // dynamic import is not supported in UMD version
-        pswpModule: PhotoSwipe,
-        initialZoomLevel: 'fill'
+        var lightbox = new PhotoSwipeLightbox({
+          gallery: '.gallery',
+          children: 'a',
+          // dynamic import is not supported in UMD version
+          pswpModule: PhotoSwipe,
+          initialZoomLevel: 'fill'
+        });
+        lightbox.init();
       });
-      lightbox.init();
     </script>
-
+    {{ end }}
 
   </section>
 {{ end }}

@@ -1,0 +1,46 @@
+{{- if .IsHome -}}
+  {{- $featured := first 1 (where (where .Site.RegularPages "Section" "projects") ".Params.featured" true) -}}
+  {{- range $featured -}}
+    {{- $img := .Resources.GetMatch (replaceRE "^\\./" "" .Params.cover_image) -}}
+    {{- with $img -}}
+      {{- $resource := . -}}
+      {{- $fallback := $resource.Fill "1600x720 Center webp q75" -}}
+      {{- $srcset := slice -}}
+      {{- range (slice 640 960 1280 1600) -}}
+        {{- if ge $resource.Width . -}}
+          {{- $processed := $resource.Resize (printf "%dx webp q75" .) -}}
+          {{- $srcset = $srcset | append (printf "%s %dw" $processed.RelPermalink .) -}}
+        {{- end -}}
+      {{- end -}}
+<link rel="preload" as="image" href="{{ $fallback.RelPermalink }}" imagesrcset="{{ delimit $srcset ", " }}" imagesizes="100vw" type="image/webp">
+    {{- end -}}
+  {{- end -}}
+{{- else if and .IsPage (eq .Section "news") .Params.image -}}
+  {{- $img := .Resources.GetMatch (replaceRE "^\\./" "" .Params.image) -}}
+  {{- with $img -}}
+    {{- $resource := . -}}
+    {{- $fallback := $resource.Fill "1440x960 Center webp q75" -}}
+    {{- $srcset := slice -}}
+    {{- range (slice 640 960 1280 1440) -}}
+      {{- if ge $resource.Width . -}}
+        {{- $processed := $resource.Resize (printf "%dx webp q75" .) -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $processed.RelPermalink .) -}}
+      {{- end -}}
+    {{- end -}}
+<link rel="preload" as="image" href="{{ $fallback.RelPermalink }}" imagesrcset="{{ delimit $srcset ", " }}" imagesizes="(min-width: 769px) 66vw, 100vw" type="image/webp">
+  {{- end -}}
+{{- else if and .IsPage (eq .Section "projects") .Params.cover_image -}}
+  {{- $img := .Resources.GetMatch (replaceRE "^\\./" "" .Params.cover_image) -}}
+  {{- with $img -}}
+    {{- $resource := . -}}
+    {{- $fallback := $resource.Fill "1440x960 Center webp q75" -}}
+    {{- $srcset := slice -}}
+    {{- range (slice 640 960 1280 1440) -}}
+      {{- if ge $resource.Width . -}}
+        {{- $processed := $resource.Resize (printf "%dx webp q75" .) -}}
+        {{- $srcset = $srcset | append (printf "%s %dw" $processed.RelPermalink .) -}}
+      {{- end -}}
+    {{- end -}}
+<link rel="preload" as="image" href="{{ $fallback.RelPermalink }}" imagesrcset="{{ delimit $srcset ", " }}" imagesizes="(min-width: 769px) 66vw, 100vw" type="image/webp">
+  {{- end -}}
+{{- end -}}

@@ -6,7 +6,15 @@
           <div class="has-rounded card">
             <div class="card-image">
               <figure class="image">
-                <img src="{{ partial "page-resource-url.html" (dict "Page" . "Path" .Params.cover_image) }}" alt="{{ partial "image-alt.html" (dict "Page" .) }}">
+                {{ partial "responsive-page-image.html" (dict
+                  "Page" .
+                  "Path" .Params.cover_image
+                  "Alt" (partial "image-alt.html" (dict "Page" .))
+                  "Sizes" "(min-width: 769px) 33vw, 100vw"
+                  "Fit" "860x646 Center"
+                  "Widths" (slice 360 540 720 860)
+                  "Loading" "lazy"
+                ) }}
               </figure>
             </div>
             <div class="card-content">

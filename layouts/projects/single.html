@@ -9,7 +9,16 @@
       <div class="columns article-layout">
         <div class="column is-two-thirds">
           <div class="content-panel">
-            <img src="{{ partial "page-resource-url.html" (dict "Page" . "Path" .Params.cover_image) }}" alt="{{ partial "image-alt.html" (dict "Page" .) }}">
+            {{ partial "responsive-page-image.html" (dict
+              "Page" .
+              "Path" .Params.cover_image
+              "Alt" (partial "image-alt.html" (dict "Page" .))
+              "Sizes" "(min-width: 769px) 66vw, 100vw"
+              "Fit" "1440x960 Center"
+              "Widths" (slice 640 960 1280 1440)
+              "Loading" "eager"
+              "FetchPriority" "high"
+            ) }}
             <div class="content content-panel-body">
               <p>{{ .Content }}</p>
             </div>
